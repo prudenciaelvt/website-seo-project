@@ -85,24 +85,6 @@ Website SEO Project adalah aplikasi web berbasis Laravel yang dikembangkan untuk
 ```
 
 
-## ⚙️ Dependensi Utama
-
-Dependensi yang digunakan sebagai berikut di `build.gradle`:
-
-```gradle
-dependencies {
-    implementation("androidx.compose.material3:material3:1.2.0")
-    implementation("androidx.activity:activity-compose:1.7.2")
-    implementation("androidx.navigation:navigation-compose:2.5.1")
-    implementation("androidx.navigation:navigation-compose:2.5.3")
-    implementation("io.coil-kt:coil-compose:2.5.0")
-    implementation("com.google.accompanist:accompanist-pager:0.28.0")
-    implementation("com.google.accompanist:accompanist-pager-indicators:0.28.0")
-    implementation("androidx.compose.material:material-icons-extended:1.7.0")
-}
-```
-
-
 
 
 
