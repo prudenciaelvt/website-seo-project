@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+//menampilkan halaman dashboard
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('dashboard');
+})->name('home');
