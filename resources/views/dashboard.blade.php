@@ -137,8 +137,8 @@
             <img src="{{ asset('assets/picture/pic_paketLEADS.png') }}" alt="sub Image">
             <h3>PAKET SEO</h3>
             <div class="btn-wrapper">
-                <button class="btn-daftar">Daftar Sekarang</button>
-            </div>            
+                <a href="{{ route('paket.seo.garansi') }}" class="btn-daftar">Daftar Sekarang</a>
+            </div>             
             <h4>Syarat dan Ketentuan</h4>
             <ol>
                 <li>Paket SEO Imersa merupakan program pengelolaan dan optimasi performa website mitra yang dilakukan oleh tim Imersa.</li>
@@ -170,7 +170,7 @@
             <img src="{{ asset('assets/picture/pic_paketLEADS.png') }}" alt="sub Image">
             <h3>PAKET LEADS</h3>
             <div class="btn-wrapper">
-                <button class="btn-daftar">Daftar Sekarang</button>
+                <a href="{{ route('form.paket.leads') }}" class="btn-daftar">Daftar Sekarang</a>
             </div> 
             <h4>Syarat dan Ketentuan</h4>
             <ol>

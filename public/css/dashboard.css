@@ -328,7 +328,13 @@ body, h1, h2, h3, p {
 
 .btn-wrapper {
   text-align: center;
+  margin-top: 20px;
 }
+
+.paket-leads .btn-wrapper {
+  margin-top: 30px;
+}
+
 
 .btn-daftar {
   background-color: #0077cc;

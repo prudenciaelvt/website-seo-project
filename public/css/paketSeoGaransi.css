@@ -1,0 +1,133 @@
+/* Global */
+html, body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: hsl(0, 0%, 100%);
+}
+
+body, h1, h2, h3, p {
+  margin: 0;
+  padding: 0;
+}
+
+/* Navbar */
+.navbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f3f3f3;
+  padding: 1rem 2rem;
+  font-family: sans-serif;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.navbar .logo {
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #bcb6b6;
+  text-decoration: none;
+}
+
+.navbar .logo img {
+  width: 100px;
+  margin-right: 10px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 3rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #000000;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #0077cc;
+}
+
+/* Layout utama */
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+/* Section ketentuan-garansi */
+.ketentuan-garansi {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1000px;
+    gap: 40px;
+}
+
+/* Judul di kiri */
+.sub-judul {
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    color: #06659E;
+}
+
+.sub-judul h2 {
+    font-size: 54px;
+    color: #333;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin: 0;
+    color: #06659E;
+}
+
+/* Kotak ketentuan di kanan */
+.garansi {
+    flex: 2;
+    border: 2px solid #0077cc;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.garansi ol {
+    margin: 0;
+    padding-left: 20px;
+    color: #444;
+}
+
+.garansi li {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+/* Tombol selanjutnya */
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    max-width: 1000px;
+    margin-top: 30px;
+}
+
+.btn-next {
+    padding: 12px 24px;
+    background-color: #b4e4ff;
+    color: #000;
+    font-size: 16px;
+    border: none;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-next:hover {
+    background-color: #90d4f7;
+}
