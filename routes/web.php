@@ -16,3 +16,6 @@ Route::get('/paket-seo-garansi', function () {
 Route::view('/form-paket-seo', 'formPaketSEO')->name('form.paket.seo');
 //Rute ke form paket LEADS
 Route::view('/form-paket-leads', 'formPaketLeads')->name('form.paket.leads');
+
+//Rute ke halaman Admin
+Route::get('/admin', [AdminController::class, 'index']);
