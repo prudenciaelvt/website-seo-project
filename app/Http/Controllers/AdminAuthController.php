@@ -17,4 +17,13 @@ class AdminAuthController extends Controller
 
         return back()->withErrors(['username' => 'Username atau password salah.']);
     }
+       public function showLoginForm()
+   {
+       return view('admin.login'); // Ensure this view exists
+   }
+    public function logout()
+    {
+        Auth::guard('admin')->logout();
+        return redirect()->route('admin.login');
+    }
 }
