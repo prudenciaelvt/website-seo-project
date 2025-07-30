@@ -1,0 +1,80 @@
+.container-kwitansi {
+    background: #fff;
+    max-width: 110%;
+    padding: 30px;
+    margin: 10px auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.container-kwitansi h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 10px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.form-group small {
+    color: #666;
+}
+
+input[type="text"],
+input[type="email"],
+.custom-input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.option-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.option-btn {
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-size: 14px;
+}
+
+.option-btn:hover {
+    background-color: #e0e0e0;
+}
+
+.option-btn.active {
+    background-color: #e3f2fd;
+    border-color: #64b5f6;
+}
+
+.btn-generate {
+    background-color: #42a5f5;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-generate:hover {
+    background-color: #2196f3;
+}

@@ -677,7 +677,7 @@ body, h1, h2, h3, p {
   }
 }
 
-/* Responsive for Small Phones */
+/* Responsive*/
 @media (max-width: 480px) {
   /* Navbar */
   .navbar .logo img {
@@ -735,7 +735,6 @@ body, h1, h2, h3, p {
     height: 28px;
   }
 }
-
 
 /* Responsive Navbar */
 .menu-toggle {

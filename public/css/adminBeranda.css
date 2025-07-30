@@ -1,0 +1,184 @@
+/* Reset dan dasar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+.beranda-container {
+    max-width: 110%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.beranda-container h2 {
+    margin-bottom: 30px;
+    font-size: 24px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}
+
+body {
+    background-color: #e9f0f4;
+    color: #333;
+}
+
+
+/* Sidebar */
+.sidebar {
+    width: 240px;
+    background-color: #003c74;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    padding: 20px;
+    text-align: center;
+    background-color: white;
+}
+
+.logo img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Navigasi */
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+nav ul li {
+    padding: 15px 20px;
+    transition: background-color 0.3s ease;
+}
+
+nav ul li.active,
+nav ul li:hover {
+    background-color: #1a5fb4;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    display: block;
+}
+
+/* Main content */
+.main-content {
+    flex: 1;
+    padding: 40px;
+    background-color: #fefefe;
+    overflow-y: auto;
+    border-top-left-radius: 20px;
+    box-shadow: inset 0 0 5px #ccc;
+}
+
+h2 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+/* Search bar */
+.search-section {
+    margin-bottom: 30px;
+}
+
+.search-section label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.search-section input[type="text"] {
+    padding: 10px 15px;
+    width: 320px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+.btn-cari {
+    padding: 10px 25px;
+    background-color: #1a73e8;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-cari:hover {
+    background-color: #0f59c8;
+}
+
+/* Tabel */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+}
+
+table th, table td {
+    padding: 14px 18px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+}
+
+table th {
+    background-color: #f7f9fc;
+    font-weight: bold;
+}
+
+/* Tombol di bawah tabel */
+.button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-pdf,
+.btn-excel {
+    padding: 10px 20px;
+    border: none;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-pdf {
+    background-color: #e53935;
+}
+
+.btn-pdf:hover {
+    background-color: #c62828;
+}
+
+.btn-excel {
+    background-color: #43a047;
+}
+
+.btn-excel:hover {
+    background-color: #2e7d32;
+}
+
+
