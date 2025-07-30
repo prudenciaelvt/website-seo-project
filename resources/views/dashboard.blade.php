@@ -247,5 +247,20 @@
         </div>
     </footer>
 
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const toggle = document.createElement('button');
+        toggle.classList.add('menu-toggle');
+        toggle.innerHTML = '&#9776;'; // Hamburger icon
+        document.querySelector('.navbar').appendChild(toggle);
+
+        const navLinks = document.querySelector('.nav-links');
+        toggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        });
+    });
+    </script>
+
+
 </body>
 </html>

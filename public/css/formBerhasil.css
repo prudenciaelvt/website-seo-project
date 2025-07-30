@@ -1,24 +1,33 @@
+/* Reset dan dasar */
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0;
   font-family: 'Segoe UI', sans-serif;
   background-color: #f9f9f9;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
+/* Navbar */
 .navbar {
   width: 100%;
   padding: 1rem 2rem;
   background-color: #f3f3f3;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
 }
 
 .logo img {
   width: 120px;
 }
 
+/* Container untuk posisi tengah */
 .success-container {
   background-color: #ffffff;
   padding: 40px 30px;
@@ -26,27 +35,31 @@ body {
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
   text-align: center;
   max-width: 500px;
-  width: 100%;
+  width: 90%;
+  margin: 50px auto;
 }
 
+/* Ikon berhasil */
 .success-icon {
-  width: 80px;
-  height: 80px;
-  margin-bottom: 20px;
+  width: 100px;
+  margin-bottom: 8px;
 }
 
+/* Judul */
 .success-container h2 {
   font-size: 1.6rem;
   margin-bottom: 10px;
   color: #222;
 }
 
+/* Paragraf */
 .success-container p {
   font-size: 1rem;
   color: #555;
   margin-bottom: 25px;
 }
 
+/* Tombol kembali */
 .btn-kembali {
   display: inline-block;
   background-color: #3daae1;
@@ -60,4 +73,19 @@ body {
 
 .btn-kembali:hover {
   background-color: #2b8ec0;
+}
+
+/* Responsif tambahan */
+@media (max-width: 600px) {
+  .success-container {
+    padding: 30px 20px;
+  }
+
+  .success-container h2 {
+    font-size: 1.4rem;
+  }
+
+  .success-container p {
+    font-size: 0.95rem;
+  }
 }
