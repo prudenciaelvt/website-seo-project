@@ -6,7 +6,7 @@ Website SEO Project adalah aplikasi web berbasis Laravel yang dikembangkan untuk
 
 ## 🎯 Fokus Pengembangan
 
-> 🔧 Tahap saat ini: **Frontend Only**
+> 🔧 Tahap saat ini: **Backend ongoing**
 
 ## 📌 Fitur Utama
 1. **Beranda**: Tampilan halaman utama yang menampilkan informasi layanan SEO.
