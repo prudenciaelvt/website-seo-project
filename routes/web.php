@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminAuthController;
 
 //menampilkan halaman dashboard
 Route::get('/', function () {
@@ -22,14 +23,14 @@ Route::view('/form-berhasil', 'formBerhasil')->name('form.berhasil');
 
 
 // Admin login page (tampilan frontend)
-Route::get('/admin/login', function () {
-    return view('admin.login');
-})->name('admin.login');
+Route::get('/admin/login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
 
 // Admin login submit (dummy, frontend saja)
-Route::post('/admin/login', function () {
-    return redirect()->route('admin.login')->with('message', 'Fitur belum aktif');
-})->name('admin.login.submit');
+Route::post('/admin/login', [AdminAuthController::class, 'login'])->name('admin.login.submit');
+Route::get('/admin/beranda', [AdminAuthController::class, 'beranda'])->name('admin.beranda');
+
+// Optional: Logout
+Route::post('/admin/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
 
 // Admin Beranda
 Route::get('/admin/beranda', function () {
@@ -45,3 +46,4 @@ Route::get('/admin/invoice', function () {
 Route::get('/admin/kwitansi', function () {
     return view('admin.kwitansi');
 })->name('admin.kwitansi');
+
