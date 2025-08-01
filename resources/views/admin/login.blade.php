@@ -21,6 +21,22 @@
         <div class="login-box">
             <h2>Login Admin IMERSA</h2>
             <p class="subtitle">Masuk ke sistem untuk mengelola layanan dan data<br>klien Anda dengan aman.</p>
+            @if(session('error'))
+                <div class="alert-error">
+                    {{ session('error') }}
+                </div>
+            @endif
+
+            @if($errors->any())
+                <div class="alert-error">
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             <form action="{{ route('admin.login.submit') }}" method="POST">
                 @csrf
                 <label for="username">Username</label>

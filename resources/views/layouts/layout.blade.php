@@ -21,8 +21,11 @@
                     <li class="{{ Request::is('admin/beranda') ? 'active' : '' }}"><a href="{{ route('admin.beranda') }}">Beranda</a></li>
                     <li class="{{ Request::is('admin/invoice') ? 'active' : '' }}"><a href="{{ route('admin.invoice') }}">Invoice</a></li>
                     <li class="{{ Request::is('admin/kwitansi') ? 'active' : '' }}"><a href="{{ route('admin.kwitansi') }}">Kwitansi</a></li>
-                    <li><a href="#">Keluar</a></li>
+                    <li href="#" onclick="logoutAdmin()">Keluar</li>
                 </ul>
+                <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
             </nav>
         </aside>
 
@@ -30,5 +33,12 @@
             @yield('content')
         </main>
     </div>
+    <script>
+        function logoutAdmin() {
+                event.preventDefault();
+                document.getElementById('logout-form').submit();
+            }
+    </script>
+
 </body>
 </html>
