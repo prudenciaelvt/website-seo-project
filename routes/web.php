@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\SeoPackageController;
+use App\Http\Controllers\PackageController;
+use App\Http\Controllers\LeadsPackageController;
+
 
 // Halaman dashboard utama
 Route::get('/', function () {
@@ -49,3 +52,5 @@ Route::get('/admin/invoice', function () {
 Route::get('/admin/kwitansi', function () {
     return view('admin.kwitansi');
 })->name('admin.kwitansi');
+
+Route::post('/paket-leads', [LeadsPackageController::class, 'store'])->name('paket-leads.store');

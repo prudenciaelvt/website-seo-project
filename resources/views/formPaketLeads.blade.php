@@ -20,41 +20,42 @@
     </section>
 
     <section class="form-wrapper">
-      <form>
+      <form method="POST" action="{{ route('paket-leads.store') }}">
+        @csrf
         <div class="form-group">
           <label>Nama (usaha/perusahaan)<span>*</span></label>
-          <input type="text" placeholder="Contoh: PT Imersa Solusi Teknologi" required>
+          <input type="text" name="nama_usaha" placeholder="Contoh: PT Imersa Solusi Teknologi" required>
         </div>
 
         <div class="form-group">
           <label>Alamat (usaha/perusahaan)<span>*</span></label>
-          <input type="text" placeholder="Contoh: RT 001 / RW 005 Lobseser Timur, Baron, Nganjuk, Jawa Timur 64394" required>
+          <input type="text" name="alamat_usaha" placeholder="Contoh: RT 001 / RW 005 Lobseser Timur, Baron, Nganjuk, Jawa Timur 64394" required>
         </div>
 
         <div class="form-group">
           <label>Alamat email<span>*</span></label>
-          <input type="email" placeholder="Contoh: mail@imersa.co.id" required>
+          <input type="email" name="email" placeholder="Contoh: mail@imersa.co.id" required>
         </div>
 
         <div class="form-group">
           <label>Nama (pemilik usaha)<span>*</span></label>
-          <input type="text" placeholder="Contoh: Miftahur Roziqin" required>
+          <input type="text" name="nama_pemilik" placeholder="Contoh: Miftahur Roziqin" required>
         </div>
 
         <div class="form-group">
           <label>Nomor telepon (pemilik usaha)<span>*</span></label>
-          <input type="text" placeholder="Contoh: 085755896233" required>
+          <input type="text" name="nomor_telepon" placeholder="Contoh: 085755896233" required>
         </div>
 
         <div class="form-group">
           <label>Produk/Jasa yang dioptimasi</label>
-          <input type="text" placeholder="Contoh: Jasa Konsultasi Finansial">
+          <input type="text" name="produk" placeholder="Contoh: Jasa Konsultasi Finansial">
         </div>
 
         <div class="form-group">
           <label>Bagi hasil dan/atau komisi penjualan bagi Imersa<span>*</span></label>
           <small>Silakan isi nominal besaran komisi dan/atau pembagian persenan bagi hasil untuk Imersa dari leads yang closing sesuai kesepakatan</small>
-          <input type="text" placeholder="Contoh: 25%" required>
+          <input type="text" name="komisi" placeholder="Contoh: 25%" required>
         </div>
 
         <div class="form-group">
@@ -62,7 +63,7 @@
             Dengan mengirimkan formulir ini, menyatakan telah membaca, memahami, dan menyetujui semua syarat dan ketentuan tertera. Oleh karena itu, saya bersedia memenuhi dan menerimanya dengan penuh tanggung jawab.<span>*</span>
           </p>
           <div class="radio-group">
-            <label><input type="radio" name="persetujuan" required> Ya, Saya Setuju.</label>
+            <label><input type="radio" name="setuju" value="1" required>Ya, Saya Setuju.</label>
           </div>
         </div>
 
