@@ -2,48 +2,50 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminAuthController;
+use App\Http\Controllers\SeoPackageController;
 
-//menampilkan halaman dashboard
+// Halaman dashboard utama
 Route::get('/', function () {
     return view('dashboard');
 })->name('home');
 
-//Rute ke Garansi paket SEO
+// Halaman paket SEO bergaransi
 Route::get('/paket-seo-garansi', function () {
     return view('paketSeoGaransi');
 })->name('paket.seo.garansi');
 
-//Rute ke form paket SEO
+// Formulir paket SEO
 Route::view('/form-paket-seo', 'formPaketSEO')->name('form.paket.seo');
-//Rute ke form paket LEADS
+
+// Formulir paket LEADS
 Route::view('/form-paket-leads', 'formPaketLeads')->name('form.paket.leads');
 
-//Rute ke form paket LEADS
+// Halaman form berhasil
 Route::view('/form-berhasil', 'formBerhasil')->name('form.berhasil');
 
+// Submit data dari form paket SEO
+Route::post('/seo-package', [SeoPackageController::class, 'store'])->name('seo-package.store');
 
-// Admin login page (tampilan frontend)
+// ===== Admin Section ===== //
+
+// Halaman login admin
 Route::get('/admin/login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
 
-// Admin login submit (dummy, frontend saja)
+// Proses login admin
 Route::post('/admin/login', [AdminAuthController::class, 'login'])->name('admin.login.submit');
-Route::get('/admin/beranda', [AdminAuthController::class, 'beranda'])->name('admin.beranda');
 
-// Optional: Logout
+// Halaman logout admin
 Route::post('/admin/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
 
-// Admin Beranda
-Route::get('/admin/beranda', function () {
-    return view('admin.beranda');
-})->name('admin.beranda');
+// Halaman beranda admin
+Route::get('/admin/beranda', [AdminAuthController::class, 'beranda'])->name('admin.beranda');
 
-// Admin Invoice
+// Halaman invoice admin
 Route::get('/admin/invoice', function () {
     return view('admin.invoice');
 })->name('admin.invoice');
 
-// Admin Kwitansi
+// Halaman kwitansi admin
 Route::get('/admin/kwitansi', function () {
     return view('admin.kwitansi');
 })->name('admin.kwitansi');
-

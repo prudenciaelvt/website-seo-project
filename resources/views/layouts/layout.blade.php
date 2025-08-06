@@ -1,3 +1,8 @@
+<!-- template layout utama untuk halaman admin Imersa, 
+    yang menyusun struktur tampilan dengan topbar logo, sidebar navigasi 
+    (Beranda, Invoice, Kwitansi, Logout) 
+-->
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
