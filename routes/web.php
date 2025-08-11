@@ -6,6 +6,7 @@ use App\Http\Controllers\SeoPackageController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\LeadsPackageController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\InvoiceController;
 
 // ===== Halaman Utama =====
 Route::get('/', function () {
@@ -40,6 +41,10 @@ Route::prefix('admin')->group(function () {
     // Customer Detail
     // di dalam Route::prefix('admin')->group(function () { ... });
     Route::get('/customer/{type}/{id}', [CustomerController::class, 'show'])->name('admin.customer.show');
+
+    // generate invoice
+    Route::post('/admin/invoice/generate', [InvoiceController::class, 'generateInvoice'])->name('admin.invoice.generate');
+
 
 
 });
