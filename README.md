@@ -8,11 +8,14 @@ Website SEO Project adalah aplikasi web berbasis Laravel yang dikembangkan untuk
 
 > 🔧 Tahap saat ini: **Backend ongoing**
 > Step selanjutnya :
-1. Backend paket LEADS
-3. Backend Admin Beranda - generate data dalam bentuk excel dan pdf
-4. Backend Admin Invoice - Desain Kode generate Invoice untuk Admin
-5. Backend Admin Kwitansi - Desain Kode generate Kwitansi untuk Admin - INVOICE di ganti PAID berwarna hijau
-6. Untuk desain invoice dan kwitansi di link gdrive di bawah ini:
+1. ~Buat Database~
+2. ~Backend paket SEO~
+3. ~Backend paket LEADS~
+4. ~Backend Admin Login~
+5. Backend Admin Beranda - generate data dalam bentuk excel dan pdf
+6. Backend Admin Invoice - Desain Kode generate Invoice untuk Admin
+7. Backend Admin Kwitansi - Desain Kode generate Kwitansi untuk Admin - INVOICE di ganti PAID berwarna hijau
+8. Untuk desain invoice dan kwitansi di link gdrive di bawah ini:
    https://drive.google.com/drive/folders/1eDKqjAJhQQtLhp2hZgDHISVSvM1KRery?usp=sharing
 
 
