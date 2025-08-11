@@ -38,7 +38,7 @@ class AdminAuthController extends Controller
     }
 
     // Menampilkan halaman dashboard  atau beranda admin
-    public function dashboard()
+    public function beranda()
     {
         if (!Session::has('admin_id')) {
             return redirect()->route('admin.login');

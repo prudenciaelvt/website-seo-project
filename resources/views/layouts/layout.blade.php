@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{{ asset('css/adminBeranda.css') }}">
     <link rel="stylesheet" href="{{ asset('css/adminInvoice.css') }}">
     <link rel="stylesheet" href="{{ asset('css/adminKwitansi.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/detailCust.css') }}">
 </head>
 <body>
     <div class="topbar">

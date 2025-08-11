@@ -5,52 +5,41 @@ use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\SeoPackageController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\LeadsPackageController;
+use App\Http\Controllers\CustomerController;
 
-
-// Halaman dashboard utama
+// ===== Halaman Utama =====
 Route::get('/', function () {
     return view('dashboard');
 })->name('home');
 
-// Halaman paket SEO bergaransi
-Route::get('/paket-seo-garansi', function () {
-    return view('paketSeoGaransi');
-})->name('paket.seo.garansi');
-
-// Formulir paket SEO
+Route::view('/paket-seo-garansi', 'paketSeoGaransi')->name('paket.seo.garansi');
 Route::view('/form-paket-seo', 'formPaketSEO')->name('form.paket.seo');
-
-// Formulir paket LEADS
 Route::view('/form-paket-leads', 'formPaketLeads')->name('form.paket.leads');
-
-// Halaman form berhasil
 Route::view('/form-berhasil', 'formBerhasil')->name('form.berhasil');
 
-// Submit data dari form paket SEO
+// Submit data form
 Route::post('/seo-package', [SeoPackageController::class, 'store'])->name('seo-package.store');
-
-// ===== Admin Section ===== //
-
-// Halaman login admin
-Route::get('/admin/login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
-
-// Proses login admin
-Route::post('/admin/login', [AdminAuthController::class, 'login'])->name('admin.login.submit');
-
-// Halaman logout admin
-Route::post('/admin/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
-
-// Halaman beranda admin
-Route::get('/admin/beranda', [AdminAuthController::class, 'beranda'])->name('admin.beranda');
-
-// Halaman invoice admin
-Route::get('/admin/invoice', function () {
-    return view('admin.invoice');
-})->name('admin.invoice');
-
-// Halaman kwitansi admin
-Route::get('/admin/kwitansi', function () {
-    return view('admin.kwitansi');
-})->name('admin.kwitansi');
-
 Route::post('/paket-leads', [LeadsPackageController::class, 'store'])->name('paket-leads.store');
+
+// ===== Admin Section =====
+Route::prefix('admin')->group(function () {
+    // Auth
+    Route::get('/login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
+    Route::post('/login', [AdminAuthController::class, 'login'])->name('admin.login.submit');
+    Route::post('/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
+
+    // Dashboard
+    Route::get('/beranda', [CustomerController::class, 'index'])->name('admin.beranda');
+    Route::get('/customers/pdf', [CustomerController::class, 'exportPdf'])->name('customers.pdf');
+    Route::get('/customers/excel', [CustomerController::class, 'exportExcel'])->name('customers.excel');
+
+    // Halaman lain
+    Route::view('/invoice', 'admin.invoice')->name('admin.invoice');
+    Route::view('/kwitansi', 'admin.kwitansi')->name('admin.kwitansi');
+
+    // Customer Detail
+    // di dalam Route::prefix('admin')->group(function () { ... });
+    Route::get('/customer/{type}/{id}', [CustomerController::class, 'show'])->name('admin.customer.show');
+
+
+});
