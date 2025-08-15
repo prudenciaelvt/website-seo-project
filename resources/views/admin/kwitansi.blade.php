@@ -1,79 +1,59 @@
 @extends('layouts.layout')
 
 @section('content')
-<div class="invoice-container">
-    <h2>Generate Kwitansi</h2>
+<div class="kwitansi-container">
+    <h2 class="title-page">Generate Kwitansi</h2>
 
-    <form>
-        @csrf
+    {{-- Bagian Pencarian --}}
+    <div class="search-section">
+        <form method="GET" action="{{ route('admin.kwitansi') }}">
+            <label for="search" class="search-label">Search</label>
+            <input type="text" id="search" name="search" placeholder="Masukkan Kata Kunci" value="{{ request('search') }}">
+            <button type="submit" class="btn btn-cari">Cari</button>
+        </form>
+    </div>
 
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" name="email" id="email" placeholder="Masukkan Email" required>
-        </div>
+    {{-- Tabel menampilkan data kwitansi --}}
+    <div class="table-wrapper">
+        <table class="table-kwitansi">
+            <thead>
+                <tr>
+                    <th>NAMA CLIENT</th>
+                    <th>KONTAK</th>
+                    <th>PAKET</th>
+                    <th>PRODUK / JASA</th>
+                    <th>TANGGAL MASUK</th>
+                    <th>TOTAL</th>
+                    <th>AKSI</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse($invoices as $inv)
+                    <tr>
+                        <td>{{ $inv->client }}</td>
+                        <td>{{ $inv->email }}</td>
+                        <td>{{ $inv->paket1_produk }}</td>
+                        <td>{{ $inv->paket1_produk }}</td>
+                        <td>{{ \Carbon\Carbon::parse($inv->created_at)->format('d-m-Y H:i') }}</td>
+                        <td>Rp {{ number_format($inv->grand_total, 0, ',', '.') }}</td>
+                        <td>
+                            <a href="{{ route('kwitansi.generate', $inv->id) }}" class="btn btn-primary">
+                                Generate Kwitansi
+                            </a>
 
-        <div class="form-group">
-            <label for="nama">Nama Lengkap</label>
-            <input type="text" name="nama" id="nama" placeholder="Masukkan Nama Lengkap" required>
-        </div>
-
-        <div class="form-group">
-            <label for="jumlah">Banyaknya Uang Pembayaran</label>
-            <input type="text" name="jumlah" id="jumlah" placeholder="Ex. Seratus Ribu Rupiah" required>
-        </div>
-
-        <div class="form-group paket-wrapper">
-            <label>Tujuan Pembayaran</label>
-            <div class="option-group">
-                <button type="button" class="paket-btn" data-value="Paket SEO">Paket SEO</button>
-                <button type="button" class="paket-btn" data-value="Paket Leads">Paket Leads</button>
-                <button type="button" class="paket-btn" data-value="Paket Iklan">Paket Iklan</button>
-                <button type="button" class="paket-btn" data-value="Facebook Marketplace">Facebook Marketplace</button>
-                <input type="text" name="tujuan_lain" class="custom-input" placeholder=".............">
-            </div>
-            <input type="hidden" name="tujuan" id="tujuan">
-        </div>
-
-        <div class="form-group">
-            <label>Metode Pembayaran atau Keterangan Lain</label>
-            <small>Pilih salah satu metode pembayaran saja dan isi opsi lainnya apabila ada keterangan tambahan</small>
-            <div class="option-group">
-                <button type="button" class="metode-btn" data-value="Cash">Cash</button>
-                <button type="button" class="metode-btn" data-value="Transfer">Transfer</button>
-                <button type="button" class="metode-btn" data-value="QRIS">QRIS</button>
-                <button type="button" class="metode-btn" data-value="E-Wallet">E-Wallet</button>
-                <input type="text" name="metode_lain" class="custom-input" placeholder=".............">
-            </div>
-            <input type="hidden" name="metode" id="metode">
-        </div>
-
-        <button type="submit" class="btn-generate">Generate Kwitansi</button>
-    </form>
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="7" style="text-align: center;">Tidak ada data kwitansi</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
 </div>
 @endsection
 
 @push('styles')
-<link rel="stylesheet" href="{{ asset('css/adminKwitansi.css') }}">
-@endpush
-
-@push('scripts')
-<script>
-    // Pemilihan tombol Tujuan
-    document.querySelectorAll('.paket-btn').forEach(btn => {
-        btn.addEventListener('click', function () {
-            document.querySelectorAll('.paket-btn').forEach(b => b.classList.remove('selected'));
-            this.classList.add('selected');
-            document.getElementById('tujuan').value = this.getAttribute('data-value');
-        });
-    });
-
-    // Pemilihan tombol Metode
-    document.querySelectorAll('.metode-btn').forEach(btn => {
-        btn.addEventListener('click', function () {
-            document.querySelectorAll('.metode-btn').forEach(b => b.classList.remove('selected'));
-            this.classList.add('selected');
-            document.getElementById('metode').value = this.getAttribute('data-value');
-        });
-    });
-</script>
+<link rel="stylesheet" href="{{ asset('css/kwitansi.css') }}">
 @endpush

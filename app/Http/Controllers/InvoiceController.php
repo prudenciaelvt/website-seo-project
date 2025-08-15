@@ -2,106 +2,124 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Invoice;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 class InvoiceController extends Controller
 {
-    // ubah menjadi int
+    // Fungsi untuk bersihkan input angka
     protected function parseNumber(mixed $value): int
     {
         if ($value === null || $value === '') return 0;
-        // hapus semua kecuali digit dan minus
-        $clean = preg_replace('/[^\d\-]/', '', (string)$value);
-        return (int)$clean;
+        return (int) preg_replace('/[^\d\-]/', '', (string)$value);
     }
 
     public function generateInvoice(Request $request)
     {
         $paket = [];
 
-        //Paket pertama
-        $p1_name  = $request->input('paket1_produk') ?? $request->input('paket1_nama');
-        $p1_qty   = $request->input('paket1_qty') ?? $request->input('paket1_qty_custom') ?? 0;
-        $p1_price = $request->input('paket1_harga') ?? 0;
-        $p1_total = $request->input('paket1_total');
+        // Paket pertama
+        $p1_name  = $request->input('paket1_produk');
+        $p1_qty   = (int) ($request->input('paket1_qty') ?? 0);
+        $p1_price = $this->parseNumber($request->input('paket1_harga') ?? 0);
+        $p1_total = $request->input('paket1_total') !== null
+                    ? $this->parseNumber($request->input('paket1_total'))
+                    : ($p1_qty * $p1_price);
 
         if (!empty($p1_name)) {
-            $qty = (int)$p1_qty;
-            $unit_price = $this->parseNumber($p1_price);
-            $line_total = $p1_total !== null && $p1_total !== '' 
-                          ? $this->parseNumber($p1_total) 
+            $paket[] = [
+                'nama'       => $p1_name,
+                'qty'        => $p1_qty,
+                'unit_price' => $p1_price,
+                'line_total' => $p1_total,
+            ];
+        }
+
+        // Paket tambahan
+        $names  = $request->input('paket_produk', []);
+        $qtys   = $request->input('paket_qty', []);
+        $prices = $request->input('paket_harga', []);
+        $tots   = $request->input('paket_total', []);
+
+        foreach ((array) $names as $i => $name) {
+            if (trim((string) $name) === '') continue;
+            $qty        = isset($qtys[$i]) ? (int) $qtys[$i] : 0;
+            $unit_price = isset($prices[$i]) ? $this->parseNumber($prices[$i]) : 0;
+            $line_total = isset($tots[$i]) && $tots[$i] !== ''
+                          ? $this->parseNumber($tots[$i])
                           : ($qty * $unit_price);
 
             $paket[] = [
-                'nama'       => $p1_name,
+                'nama'       => $name,
                 'qty'        => $qty,
                 'unit_price' => $unit_price,
                 'line_total' => $line_total,
             ];
         }
 
-        //Paket tambahan
-        $names  = $request->input('paket_produk') ?? $request->input('paket_nama') ?? [];
-        $qtys   = $request->input('paket_qty') ?? [];
-        $prices = $request->input('paket_harga') ?? [];
-        $tots   = $request->input('paket_total') ?? [];
-
-        if (is_array($names)) {
-            foreach ($names as $i => $name) {
-                if (trim((string)$name) === '') continue;
-                $qty = isset($qtys[$i]) ? (int)$qtys[$i] : 0;
-                $unit_price = isset($prices[$i]) ? $this->parseNumber($prices[$i]) : 0;
-                $line_total = isset($tots[$i]) && $tots[$i] !== null && $tots[$i] !== ''
-                              ? $this->parseNumber($tots[$i])
-                              : ($qty * $unit_price);
-
-                $paket[] = [
-                    'nama'       => $name,
-                    'qty'        => $qty,
-                    'unit_price' => $unit_price,
-                    'line_total' => $line_total,
-                ];
-            }
-        }
-
-        // kalau benar-benar kosong, tambahkan baris kosong (opsional)
         if (empty($paket)) {
-            $paket[] = ['nama'=>'-','qty'=>0,'unit_price'=>0,'line_total'=>0];
+            $paket[] = ['nama' => '-', 'qty' => 0, 'unit_price' => 0, 'line_total' => 0];
         }
 
-        // hitung subtotal & total (belum fiks)
+        // Hitung subtotal & total
         $subtotal = array_sum(array_column($paket, 'line_total'));
-        $totalFromRequest = $request->input('grand_total') ?? $request->input('total') ?? null;
-        $total = $totalFromRequest !== null && $totalFromRequest !== ''
-                 ? $this->parseNumber($totalFromRequest)
-                 : $subtotal;
+        $total    = $request->input('grand_total') !== null
+                    ? $this->parseNumber($request->input('grand_total'))
+                    : $subtotal;
 
-        //logo generate
-        $logoPath = public_path('assets/picture/pic_logoImersa.png'); //path image
+        // Simpan ke database
+        $invoice = Invoice::create([
+            'email'          => $request->input('email'),
+            'client'         => $request->input('client'),
+            'paket1_produk'  => $p1_name,
+            'paket1_qty'     => $p1_qty,
+            'paket1_harga'   => $p1_price,
+            'paket1_total'   => $p1_total,
+            'paket_tambahan' => array_slice($paket, 1), // semua paket setelah paket pertama
+            'total_sebelum'  => $subtotal,
+            'grand_total'    => $total,
+        ]);
+
+        // Ambil logo untuk PDF
         $logoBase64 = null;
-        if (file_exists($logoPath) && is_readable($logoPath)) {
-            $ext = strtolower(pathinfo($logoPath, PATHINFO_EXTENSION));
-            $type = in_array($ext, ['png','jpg','jpeg','gif']) ? $ext : 'png';
-            $data = file_get_contents($logoPath);
-            $logoBase64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+        $logoPath   = public_path('assets/picture/pic_logoImersa.png');
+        if (file_exists($logoPath)) {
+            $ext       = pathinfo($logoPath, PATHINFO_EXTENSION);
+            $data      = file_get_contents($logoPath);
+            $logoBase64 = 'data:image/' . strtolower($ext) . ';base64,' . base64_encode($data);
         }
 
-        // data untuk view
+        // Data untuk view PDF
         $data = [
-            'invoice_no'   => rand(10, 9999),
-            'invoice_date' => now()->format('n/j/Y H:i:s'),
-            'client'       => $request->input('client'),
-            'email'        => $request->input('email'),
+            'invoice_no'   => $invoice->id,
+            'invoice_date' => now()->format('d/m/Y H:i:s'),
+            'client'       => $invoice->client,
+            'email'        => $invoice->email,
             'paket'        => $paket,
             'subtotal'     => $subtotal,
             'total'        => $total,
             'logo'         => $logoBase64,
         ];
 
-        // render PDF
-        $pdf = Pdf::loadView('templates.invoiceTemplate', $data)->setPaper('A4', 'portrait');
+        // Generate PDF
+        $pdf = Pdf::loadView('templates.invoiceTemplate', $data)->setPaper('A5', 'portrait');
 
-        return $pdf->download('Invoice-'.$data['invoice_no'].'.pdf');
+        return $pdf->download('Invoice-' . $invoice->id . '.pdf');
     }
+
+    public function kwitansiIndex(Request $request)
+    {
+        $query = Invoice::query();
+
+        if ($request->has('search') && $request->search != '') {
+            $query->where('client', 'like', '%' . $request->search . '%')
+                ->orWhere('email', 'like', '%' . $request->search . '%');
+        }
+
+        $invoices = $query->get();
+
+        return view('kwitansi.index', compact('invoices'));
+    }
+
 }
