@@ -56,12 +56,12 @@ Route::prefix('admin')->group(function () {
     Route::get('/kwitansi/generate/{id}', [KwitansiController::class, 'generate'])
     ->name('kwitansi.generate');
 
-    Route::get('/kwitansi/generate/{id}', [KwitansiController::class, 'generate'])
-    ->name('kwitansi.generate');
 
-    Route::get('/customers/excel', [CustomerController::class, 'export'])->name('customers.excel');
+    // Export PDF
+    Route::get('/customers/pdf', [CustomerController::class, 'exportPdf'])->name('customers.pdf');
 
-    Route::get('/customers/pdf', [CustomerController::class, 'export'])->name('customers.pdf');
+    // Export Excel
+    Route::get('/customers/excel', [CustomerController::class, 'exportExcel'])->name('customers.excel');
 
 
 

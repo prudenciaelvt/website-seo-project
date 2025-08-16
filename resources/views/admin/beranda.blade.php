@@ -37,7 +37,7 @@
                     {{-- Format tanggal masuk, kalau kosong tampil tanda '-' --}}
                     <td>{{ $c->tanggal_masuk ? \Carbon\Carbon::parse($c->tanggal_masuk)->format('d-m-Y H:i') : '-' }}</td>
                     <td>
-                    <a href="#" class="lihat-detail" data-id="{{ $c->id }}" data-type="{{ $c->type }}">[Lihat Detail]</a>
+                    <a href="#" class="lihat-detail" data-id="{{ $c->id }}" data-type="{{ $c->type }}">Lihat Detail</a>
                     </td>                </tr>
                 @endforeach
             </tbody>

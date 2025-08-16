@@ -77,28 +77,58 @@ class CustomerController extends Controller
     // * Export data customer (SEO + Leads) ke file PDF.
     public function exportPdf()
     {
-         // Ambil data SEO
+        // Ambil data SEO
         $seo = SeoPackage::select(
-            'nama_pemilik as nama',
-            'nomor_telepon as kontak',
+            DB::raw("created_at as tanggal_masuk"),
             DB::raw("'SEO' as paket"),
             'produk as produk_jasa',
-            'created_at as tanggal_masuk'
+            DB::raw("COALESCE(nama_usaha, '-') as nama_usaha"),
+            'website_usaha',
+            'nama_pemilik as nama_pemilik',
+            'nomor_telepon as kontak',
+            DB::raw("'-' as email"),
+            DB::raw("'-' as alamat_usaha"),
+            DB::raw("'-' as komisi"),
+            'jangka_waktu',
+            'target_market',
+            DB::raw("'-' as status_invoice")
         );
+
         // Ambil data Leads
         $leads = LeadsPackage::select(
-            'nama_pemilik as nama',
-            'nomor_telepon as kontak',
+            DB::raw("created_at as tanggal_masuk"),
             DB::raw("'LEADS' as paket"),
             'produk as produk_jasa',
-            'created_at as tanggal_masuk'
+            DB::raw("COALESCE(nama_usaha, '-') as nama_usaha"),
+            DB::raw("'-' as website_usaha"),
+            'nama_pemilik as nama_pemilik',
+            'nomor_telepon as kontak',
+            'email',
+            'alamat_usaha',
+            'komisi',
+            DB::raw("'-' as jangka_waktu"),
+            DB::raw("'-' as target_market"),
+            DB::raw("'-' as status_invoice")
         );
-        // Gabungkan data SEO dan Leads
-        $customers = $seo->unionAll($leads)->get()->sortByDesc('tanggal_masuk');
 
-        $pdf = Pdf::loadView('exports.customer_pdf', compact('customers'));
+        // Gabungkan data
+        $customers = $seo->unionAll($leads);
+
+        // Bungkus unionAll dengan query builder supaya bisa orderBy
+        $customers = DB::query()->fromSub($customers, 'customers')
+            ->orderByDesc('tanggal_masuk')
+            ->get();
+
+        // Buat PDF dengan orientasi Landscape
+        $pdf = Pdf::loadView('templates.pdfTemplate', compact('customers'))
+            ->setPaper('a4', 'landscape');
+
         return $pdf->download('data_customer.pdf');
     }
+
+
+
+
 
     // Export data customer ke file Excel.
     public function exportExcel()
