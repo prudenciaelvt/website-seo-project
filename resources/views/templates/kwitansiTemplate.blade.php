@@ -15,6 +15,20 @@
             padding: 15px 25px;
             box-sizing: border-box;
         }
+
+        .layout-header {
+            margin-bottom: 20px;
+            margin-top: 20px;
+        }
+
+        .layout-header table {
+            width: 100%;
+        }
+
+        .layout-header td {
+            vertical-align: middle;
+        }
+
         /* HEADER */
         .header-top {
             text-align: right;
@@ -28,13 +42,15 @@
         .title-section h1 {
             font-size: 26px;
             margin: 0;
-            color: #28a745;
+            color: #0072BC;
         }
         /* CONTACT INFO */
         .contact-info {
             line-height: 1.5;
             width: 100%;
             border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
         }
         .contact-info td {
             vertical-align: middle;
@@ -53,7 +69,7 @@
             table-layout: fixed;
         }
         table.products th {
-            background: #28a745;
+            background: #0072BC;
             color: white;
             font-weight: bold;
             padding: 5px;
@@ -67,17 +83,22 @@
         }
         /* TOTAL */
         .bottom-section {
-            display: flex;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: 1fr 220px; 
+            gap: 20px;
+            width: 100%;
             margin-top: 20px;
         }
-        .terms {
-            flex: 1;
-            max-width: 65%;
+
+        .bottom-section .terms {
+            flex: 1; 
+            max-width: 60%; 
         }
-        .totals {
-            border-collapse: collapse;
+
+        .bottom-section .totals {
+            flex: 0 0 250px; 
         }
+
         .totals td {
             border: 1px solid #ccc;
             padding: 5px 10px;
@@ -87,7 +108,7 @@
             text-align: left;
         }
         .totals .total-row {
-            background: #28a745;
+            background: #0072BC;
             color: white;
             font-weight: bold;
         }
@@ -112,16 +133,19 @@
     </div>
 
     <!-- TITLE & LOGO -->
-    <div class="title-section">
-        <div>
-            @if($logo)
-                <img src="{{ $logo }}" alt="Logo" style="height:40px;">
-            @endif
-            <h1>KWITANSI</h1>
-        </div>
-        <div style="text-align:right;">
-            <span style="font-size:22px; font-weight:bold; color:#28a745;">PAID</span>
-        </div>
+    <div class="layout-header">
+        <table>
+            <tr>
+                <td>
+                    @if($logo)
+                        <img src="{{ $logo }}" alt="Logo" style="height:40px;"> 
+                    @endif
+                </td>
+                <td style="text-align:right;">
+                    <span style="font-size:28px; font-weight:bold; color:#28a745;">PAID</span>
+                </td>
+            </tr>
+        </table>
     </div>
 
     <!-- CLIENT INFO -->
@@ -182,8 +206,8 @@
             <b>Keterangan:</b><br>
             {!! nl2br(e($keterangan)) !!}
         </div>
-        <div>
-            <table class="totals">
+        <div class="totals">
+            <table>
                 <tr>
                     <td>Sub-total</td>
                     <td>{{ number_format($subtotal,0,',','.') }}</td>
@@ -199,6 +223,7 @@
             </table>
         </div>
     </div>
+
 
     <!-- FOOTER -->
     <div class="footer-strip">
