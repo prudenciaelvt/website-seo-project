@@ -57,10 +57,7 @@ Website SEO Project adalah aplikasi web berbasis Laravel yang dikembangkan untuk
    ```bash
    composer install
    npm install
-4. Salin file environment dan generate app key:
-   ```bash
-   cp .env.example .env
-   php artisan key:generate
+4. import database ke phpmyadmin - database sql berada di folder database
 5. Jalankan server laravel
    ```bash
    php artisan serve
