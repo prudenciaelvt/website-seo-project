@@ -126,13 +126,51 @@ class CustomerController extends Controller
         return $pdf->download('data_customer.pdf');
     }
 
-
-
-
-
     // Export data customer ke file Excel.
     public function exportExcel()
     {
+         // Ambil data SEO
+        $seo = SeoPackage::select(
+            DB::raw("created_at as tanggal_masuk"),
+            DB::raw("'SEO' as paket"),
+            'produk as produk_jasa',
+            DB::raw("COALESCE(nama_usaha, '-') as nama_usaha"),
+            'website_usaha',
+            'nama_pemilik as nama_pemilik',
+            'nomor_telepon as kontak',
+            DB::raw("'-' as email"),
+            DB::raw("'-' as alamat_usaha"),
+            DB::raw("'-' as komisi"),
+            'jangka_waktu',
+            'target_market',
+            DB::raw("'-' as status_invoice")
+        );
+
+        // Ambil data Leads
+        $leads = LeadsPackage::select(
+            DB::raw("created_at as tanggal_masuk"),
+            DB::raw("'LEADS' as paket"),
+            'produk as produk_jasa',
+            DB::raw("COALESCE(nama_usaha, '-') as nama_usaha"),
+            DB::raw("'-' as website_usaha"),
+            'nama_pemilik as nama_pemilik',
+            'nomor_telepon as kontak',
+            'email',
+            'alamat_usaha',
+            'komisi',
+            DB::raw("'-' as jangka_waktu"),
+            DB::raw("'-' as target_market"),
+            DB::raw("'-' as status_invoice")
+        );
+
+        // Gabungkan data
+        $customers = $seo->unionAll($leads);
+
+        // Bungkus unionAll dengan query builder supaya bisa orderBy
+        $customers = DB::query()->fromSub($customers, 'customers')
+            ->orderByDesc('tanggal_masuk')
+            ->get();
+            
         // Download file Excel dengan data customer
         return Excel::download(new CustomerExport, 'customers.xlsx');
     }
