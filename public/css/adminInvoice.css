@@ -30,7 +30,7 @@
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 6px;
-    font-size: 14px;
+    font-size: 12px;
     background-color: #fafafa;
 }
 
@@ -64,7 +64,7 @@
     padding: 8px 10px;
     border: 1px solid #ccc;
     border-radius: 6px;
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .option-group button:hover {
@@ -96,13 +96,106 @@
     background-color: #009688;
     color: white;
     padding: 12px 25px;
-    font-size: 16px;
+    font-size: 12px;
     border: none;
     border-radius: 6px;
     cursor: pointer;
     width: 100%;
 }
 
-.btn-generate:hover {
+.btn-save {
+    margin-top: 25px;
+    background-color: #009688;
+    color: white;
+    padding: 12px 25px;
+    font-size: 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.btn-save:hover {
     background-color: #00796B;
 }
+
+
+/* Tombol Export Semua Invoice */
+.btn-excel-all {
+    display: inline-block;
+    background-color: #ec8729; 
+    color: #fff;
+    padding: 10px 18px;
+    font-size: 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Hover efek */
+.btn-excel-all:hover {
+    background-color: #d1741e;
+    transform: translateY(-2px);
+}
+
+.btn-excel-all:active {
+    background-color: #c86406;
+    transform: translateY(0);
+}
+
+/* Tombol Generate Semua Invoice */
+.btn-tambah-invoice {
+    display: inline-block;
+    background-color: #2196F3; 
+    color: #fff;
+    padding: 10px 18px;
+    font-size: 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Hover efek */
+.btn-tambah-invoice:hover {
+    background-color: #2196F3;
+    transform: translateY(-2px);
+}
+
+.btn-tambah-invoice:active {
+    background-color: #2196F3;
+    transform: translateY(0);
+}
+
+
+
+/* 🔹 Wrapper tabel agar bisa scroll horizontal & vertical */
+.table-wrapper {
+    max-height: 400px; /* tinggi maksimal agar bisa discroll */
+    overflow-y: auto;
+    overflow-x: auto;
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+/* button generate */
+.btn-generate {
+    padding: 6px 12px;
+    font-size: 12px;
+    border-radius: 4px;
+    background-color: #00796B;
+    color: #fff;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+.btn-generate:hover {
+    background-color: #00796B;
+    transform: scale(1.05);
+}
+
+
+
+btn-save

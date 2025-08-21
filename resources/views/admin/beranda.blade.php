@@ -18,12 +18,12 @@
         <table>
             <thead>
                 <tr>
-                    <th>NAMA</th>
-                    <th>KONTAK</th>
-                    <th>PAKET</th>
-                    <th>PRODUK / JASA</th>
-                    <th>TANGGAL MASUK</th>
-                    <th>AKSI</th>
+                    <th>Nama</th>
+                    <th>Kontak</th>
+                    <th>Paket</th>
+                    <th>Produk / Jasa</th>
+                    <th>Tanggal Masuk</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>

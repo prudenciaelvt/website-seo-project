@@ -165,7 +165,7 @@
             Invoice To:<br>{!! nl2br(e($client)) !!}
         </div>
         <div class="invoice-details" style="text-align: right;">
-            Invoice No: {{ $invoice_no }}<br>
+            No Invoice: {{ $invoice_no }}<br>
             Invoice Date: {{ $invoice_date }}
         </div>
     </div>

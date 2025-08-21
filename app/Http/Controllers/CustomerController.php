@@ -9,6 +9,8 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\CustomerExport;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
+
 
 class CustomerController extends Controller
 {
@@ -37,6 +39,12 @@ class CustomerController extends Controller
     // Menampilkan daftar semua customer dari tabel SEO dan Leads.
     public function index(Request $request)
     {
+        
+        // Cek login
+        if (!Session::has('admin_id')) {
+            return redirect()->route('admin.login');
+        }
+
         // Ambil input pencarian dari query string
         $search = $request->input('search');
 

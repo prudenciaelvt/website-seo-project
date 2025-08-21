@@ -1,30 +1,30 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Admin;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
-
 use Illuminate\Http\Request;
 
 class AdminAuthController extends Controller
 {
-    // Menampilkan halaman login admin
+    // Halaman login
     public function showLoginForm()
     {
         if (Session::has('admin_id')) {
             return redirect()->route('admin.beranda');
         }
+
         return view('admin.login');
     }
 
-    // Proses login admin, validasi input, dan session admin
+    // Proses login
     public function login(Request $request)
     {
         $request->validate([
-            'username' => 'required',
-            'password' => 'required',
+            'username' => 'required|string',
+            'password' => 'required|string',
         ]);
 
         $admin = Admin::where('username', $request->username)->first();
@@ -37,9 +37,10 @@ class AdminAuthController extends Controller
         return back()->withErrors(['login_error' => 'Username atau password salah']);
     }
 
-    // Menampilkan halaman dashboard  atau beranda admin
+    // Dashboard / beranda admin
     public function beranda()
     {
+        // Cek session manual
         if (!Session::has('admin_id')) {
             return redirect()->route('admin.login');
         }
@@ -50,12 +51,10 @@ class AdminAuthController extends Controller
     // Logout admin
     public function logout(Request $request)
     {
-        
-        Auth::logout(); // keluar dari sesi login
-        $request->session()->invalidate(); // hapus session
-        $request->session()->regenerateToken(); // buat ulang token CSRF
-        return redirect()->route('admin.login'); // arahkan ke halaman login admin
-        
-    }
+        Session::forget('admin_id');
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
+        return redirect()->route('admin.login');
+    }
 }

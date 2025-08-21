@@ -4,9 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Models\Invoice;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Session;
+
 
 class KwitansiController extends Controller
 {
+    public function index()
+    {
+        // Cek login
+        if (!Session::has('admin_id')) {
+            return redirect()->route('admin.login');
+        }
+
+        // Lanjut ambil data dan render view
+    }
+
     public function generate($id)
     {
         $invoice = Invoice::findOrFail($id);
@@ -59,7 +71,7 @@ class KwitansiController extends Controller
             'logo'        => $logo,
             'client'      => $invoice->client,
             'no_kwitansi' => 'KW-' . str_pad($invoice->id, 5, '0', STR_PAD_LEFT),
-            'tanggal'     => $invoice->created_at->format('d/m/Y'),
+            'tanggal'     => now()->format('d/m/Y H:i:s'),
             'items'       => $items,
             'subtotal'    => $invoice->total_sebelum,
             'total'       => $invoice->grand_total,

@@ -125,27 +125,95 @@ h2 {
     background-color: #0f59c8;
 }
 
-/* Tabel */
+/* Tabel beranda seperti invoice/kwitansi */
+/* Tabel minimalis modern */
 table {
     width: 100%;
     border-collapse: collapse;
-    background-color: white;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
-}
-
-table th, table td {
-    padding: 14px 18px;
-    text-align: left;
-    border-bottom: 1px solid #eee;
     font-size: 14px;
+    background-color: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
 }
 
+/* Header */
 table th {
     background-color: #f7f9fc;
-    font-weight: bold;
+    font-weight: 600;
+    color: #000000;
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 2px solid #e2e8f0;
+    vertical-align: middle;
 }
+
+/* Seluruh sel */
+table td {
+    padding: 12px 16px;
+    color: #000000;
+    border-bottom: 1px solid #f1f5f9;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    vertical-align: middle;
+}
+
+/* Hover baris */
+table tbody tr:hover {
+    background-color: #f0f9ff;
+    cursor: pointer;
+}
+
+/* Alternating row untuk lebih mudah dibaca */
+table tbody tr:nth-child(even) {
+    background-color: #fcfcfc;
+}
+
+/* Tombol aksi */
+.lihat-detail {
+    padding: 6px 12px;
+    font-size: 13px;
+    border-radius: 6px;
+    background-color: #2563eb;
+    color: #fff;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+.lihat-detail:hover {
+    background-color: #1d4ed8;
+    transform: scale(1.05);
+}
+
+/* Responsive: scroll horizontal di HP */
+@media (max-width: 768px) {
+    table {
+        display: block;
+        overflow-x: auto;
+    }
+}
+
+
+/* Untuk tombol aksi tetap seragam */
+.lihat-detail {
+    padding: 6px 12px;
+    font-size: 12px;
+    border-radius: 4px;
+    background-color: #ff9800;
+    color: #fff;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+.lihat-detail:hover {
+    background-color: #e68900;
+    transform: scale(1.05);
+}
+
 
 /* Tombol di bawah tabel */
 .button-group {
