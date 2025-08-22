@@ -21,6 +21,7 @@
             <table class="table-kwitansi">
                 <thead>
                     <tr>
+                        <th>Kwitansi No</th>
                         <th>Nama </th>
                         <th>Kontak</th>
                         <th>Paket</th>
@@ -32,6 +33,7 @@
                 <tbody>
                     @forelse($invoices as $inv)
                         <tr>
+                            <td>{{ 'KW-' . str_pad($inv->id, 5, '0', STR_PAD_LEFT) }}</td>
                             <td>{{ $inv->client }}</td>
                             <td>{{ $inv->email }}</td>
                             <td>
