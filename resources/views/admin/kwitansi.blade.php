@@ -24,7 +24,6 @@
                         <th>Nama </th>
                         <th>Kontak</th>
                         <th>Paket</th>
-                        <th>Produk / Jasa</th>
                         <th>Tanggal Masuk</th>
                         <th>Total</th>
                         <th>Aksi</th>
@@ -35,8 +34,24 @@
                         <tr>
                             <td>{{ $inv->client }}</td>
                             <td>{{ $inv->email }}</td>
-                            <td>{{ $inv->paket1_produk }}</td>
-                            <td>{{ $inv->paket1_produk }}</td>
+                            <td>
+                                {{-- Tampilkan paket utama --}}
+                                {{ $inv->paket1_produk }}
+
+                                {{-- Cek apakah ada paket tambahan --}}
+                                @if(!empty($inv->paket_tambahan))
+                                    @php
+                                        // Jika string JSON, decode dulu
+                                        $tambahan = is_string($inv->paket_tambahan) ? json_decode($inv->paket_tambahan, true) : $inv->paket_tambahan;
+                                    @endphp
+
+                                    @if(is_array($tambahan))
+                                        @foreach($tambahan as $paket)
+                                            <br>{{ $paket['nama'] ?? '' }}
+                                        @endforeach
+                                    @endif
+                                @endif
+                            </td>
                             <td>{{ \Carbon\Carbon::parse($inv->created_at)->format('d-m-Y H:i') }}</td>
                             <td>Rp {{ number_format($inv->grand_total, 0, ',', '.') }}</td>
                             <td>
