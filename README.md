@@ -9,10 +9,14 @@ Website SEO Project adalah aplikasi web berbasis Laravel yang dikembangkan untuk
     
 ## 📌 Fitur Utama
 1. **Beranda**: Tampilan halaman utama yang menampilkan informasi layanan SEO.
-2. **Autentikasi Pengguna**: Sistem login & register untuk admin.
-3. **Manajemen Paket SEO**: Tambah, ubah, dan hapus informasi paket layanan.
-4. **Dashboard Admin**: Area backend untuk mengelola pengguna, konten, dan pengaturan sistem.
-5. **Halaman Kontak**: Formulir kontak untuk berinteraksi dengan pengunjung situs.
+2. **Fitur pesan paket SEO**: Formulir untuk memesan paket SEO.
+3. **Fitur pesan paket LEADS**: Formulir untuk memesan paket LEADS.
+4. **Autentikasi Admin**: Sistem login admin.
+5. **Informasi data user**: Tambah, ubah, dan hapus informasi paket layanan.
+6. **Invoice - generate invoice**: generate data invoice untuk keperluan customer.
+7. **kwitansi - generate kwitansi**: generate data kwitansi untuk keperluan customer.
+8. **Dashboard Admin**: Area backend untuk mengelola pengguna, konten, dan pengaturan sistem.
+
 
 ---
 
