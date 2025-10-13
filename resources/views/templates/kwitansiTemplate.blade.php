@@ -99,6 +99,11 @@
             flex: 0 0 250px; 
         }
 
+        .totals {
+            border-collapse: collapse;
+            width: auto;
+        }
+
         .totals td {
             border: 1px solid #ccc;
             padding: 5px 10px;
@@ -206,22 +211,22 @@
             <b>Keterangan:</b><br>
             {!! nl2br(e($keterangan)) !!}
         </div>
-        <div class="totals">
-            <table>
-                <tr>
-                    <td>Sub-total</td>
-                    <td>{{ number_format($subtotal,0,',','.') }}</td>
-                </tr>
-                <tr>
-                    <td>Pajak</td>
-                    <td>0</td>
-                </tr>
-                <tr class="total-row">
-                    <td>Total</td>
-                    <td>{{ number_format($total,0,',','.') }}</td>
-                </tr>
-            </table>
-        </div>
+       <table class="totals">
+            <tr>
+                <td>Sub-total</td>
+                <td>{{ number_format($subtotal,0,',','.') }}</td>
+            </tr>
+            <tr>
+                <td>Pajak (10%)</td>
+                <td>{{ number_format($subtotal * 0.10,0,',','.') }}</td>
+            </tr>
+            <tr class="total-row">
+                <td>Total</td>
+                <td>{{ number_format($subtotal * 1.10,0,',','.') }}</td>
+            </tr>
+        </table>
+
+
     </div>
 
 

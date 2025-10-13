@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Invoice;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Session;
+use Carbon\Carbon;
 
 
 class KwitansiController extends Controller
@@ -65,6 +66,8 @@ class KwitansiController extends Controller
             $data = file_get_contents($logoPath);
             $logo = 'data:image/' . strtolower($ext) . ';base64,' . base64_encode($data);
         }
+
+        // Format tanggal + jam saat generate
 
         // Kirim ke view
         $pdf = Pdf::loadView('templates.kwitansiTemplate', [

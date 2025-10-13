@@ -27,8 +27,6 @@
         </div>
     </div>
 
-
-
     {{-- Wrapper tabel scroll --}}
     <div class="table-wrapper" style="margin-top:20px;">
         <table class="invoice-table">
@@ -69,14 +67,24 @@
                             @endif
                         </td>
 
-                        <td>{{ number_format($invoice->grand_total, 0, ',', '.') }}</td>
+                        <td>Rp {{ number_format($invoice->grand_total, 0, ',', '.') }}</td>
 
-                        <td>
-                            <a href="{{ route('invoices.generate', $invoice->id) }}" class="btn-generate">
-                                Generate
+                        <td class="aksi-column">
+                            {{-- Tombol Generate --}}
+                            <a href="{{ route('invoices.generate', $invoice->id) }}" class="btn-aksi btn-generate">
+                                <i class="fas fa-file-invoice"></i> Generate
                             </a>
 
+                            {{-- Tombol Hapus --}}
+                            <form action="{{ route('invoices.destroy', $invoice->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus invoice ini?');" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn-aksi btn-delete">
+                                    <i class="fas fa-trash-alt"></i> Hapus
+                                </button>
+                            </form>
                         </td>
+
                     </tr>
                 @empty
                     <tr>

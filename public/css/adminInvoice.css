@@ -1,3 +1,4 @@
+/* === Container Utama === */
 .invoice-container {
     max-width: 110%;
     background-color: #fff;
@@ -13,6 +14,7 @@
     padding-bottom: 10px;
 }
 
+/* === Form Invoice === */
 .invoice-form .form-group {
     margin-bottom: 20px;
 }
@@ -39,10 +41,12 @@
     resize: vertical;
 }
 
+/* === Paket Wrapper === */
 .paket-wrapper {
     background-color: #fefefe;
 }
 
+/* === Pilihan Paket === */
 .option-group {
     display: flex;
     flex-wrap: wrap;
@@ -59,16 +63,8 @@
     transition: background-color 0.2s ease;
 }
 
-.option-group .custom-input {
-    width: 80px;
-    padding: 8px 10px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 12px;
-}
-
 .option-group button:hover {
-    background-color: #005792;
+    background-color: #e0e0e0;
 }
 
 .option-group button.selected {
@@ -77,6 +73,15 @@
     border-color: #005792;
 }
 
+.option-group .custom-input {
+    width: 80px;
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 12px;
+}
+
+/* === Tombol Tambah Paket === */
 .btn-add-paket {
     background-color: #2196F3;
     color: white;
@@ -85,14 +90,17 @@
     border-radius: 6px;
     cursor: pointer;
     font-weight: 500;
+    transition: background-color 0.3s ease;
 }
 
 .btn-add-paket:hover {
     background-color: #1976D2;
 }
 
+/* === Tombol Simpan / Generate === */
+.btn-save,
 .btn-generate {
-    margin-top: 25px;
+    
     background-color: #009688;
     color: white;
     padding: 12px 25px;
@@ -101,29 +109,18 @@
     border-radius: 6px;
     cursor: pointer;
     width: 100%;
+    transition: background-color 0.3s ease;
 }
 
-.btn-save {
-    margin-top: 25px;
-    background-color: #009688;
-    color: white;
-    padding: 12px 25px;
-    font-size: 12px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    width: 100%;
-}
-
-.btn-save:hover {
+.btn-save:hover,
+.btn-generate:hover {
     background-color: #00796B;
 }
 
-
-/* Tombol Export Semua Invoice */
-.btn-excel-all {
+/* === Tombol Export & Tambah Invoice === */
+.btn-excel-all,
+.btn-tambah-invoice {
     display: inline-block;
-    background-color: #ec8729; 
     color: #fff;
     padding: 10px 18px;
     font-size: 12px;
@@ -132,45 +129,32 @@
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-/* Hover efek */
+.btn-excel-all {
+    background-color: #ec8729;
+}
 .btn-excel-all:hover {
     background-color: #d1741e;
     transform: translateY(-2px);
 }
-
 .btn-excel-all:active {
     background-color: #c86406;
-    transform: translateY(0);
 }
 
-/* Tombol Generate Semua Invoice */
 .btn-tambah-invoice {
-    display: inline-block;
-    background-color: #2196F3; 
-    color: #fff;
-    padding: 10px 18px;
-    font-size: 12px;
-    border-radius: 6px;
-    text-decoration: none;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-/* Hover efek */
-.btn-tambah-invoice:hover {
     background-color: #2196F3;
+}
+.btn-tambah-invoice:hover {
+    background-color: #1976D2;
     transform: translateY(-2px);
 }
-
 .btn-tambah-invoice:active {
-    background-color: #2196F3;
+    background-color: #1565C0;
     transform: translateY(0);
 }
 
-
-
-/* 🔹 Wrapper tabel agar bisa scroll horizontal & vertical */
+/* === Wrapper tabel agar bisa scroll === */
 .table-wrapper {
-    max-height: 400px; /* tinggi maksimal agar bisa discroll */
+    max-height: 400px;
     overflow-y: auto;
     overflow-x: auto;
     margin-top: 20px;
@@ -178,24 +162,62 @@
     border-radius: 8px;
 }
 
-/* button generate */
-.btn-generate {
-    padding: 6px 12px;
-    font-size: 12px;
-    border-radius: 4px;
-    background-color: #00796B;
-    color: #fff;
-    text-decoration: none;
-    display: inline-block;
-    text-align: center;
-    transition: all 0.2s ease;
+/* === Kolom Aksi (Generate / Hapus) === */
+.aksi-column {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
 }
 
-.btn-generate:hover {
+/* Hilangkan margin form agar sejajar */
+.aksi-column form {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+/* Tombol aksi seragam */
+.btn-aksi {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    height: 36px;
+    line-height: 1;
+}
+
+/* Tombol Generate */
+.btn-aksi.btn-generate {
+    background-color: #009688;
+    color: #fff;
+}
+.btn-aksi.btn-generate:hover {
     background-color: #00796B;
     transform: scale(1.05);
 }
 
+/* Tombol Delete */
+.btn-aksi.btn-delete {
+    background-color: #dc3545;
+    color: #fff;
+}
+.btn-aksi.btn-delete:hover {
+    background-color: #b02a37;
+    transform: scale(1.05);
+}
 
-
-btn-save
+/* Icon di tombol */
+.btn-aksi i {
+    font-size: 13px;
+    line-height: 1;
+}

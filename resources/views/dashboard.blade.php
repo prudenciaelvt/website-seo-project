@@ -11,11 +11,13 @@
         <a href="{{ route('home') }}" class="logo">
             <img src="{{ asset('assets/picture/pic_logoImersa.png') }}" alt="Logo Imersa">
         </a>
-        <div class="nav-links">
-            <a>Beranda</a>
-            <a>Tentang Kami</a>
-            <a>Hubungi Kami</a>
-        </div>
+     <div class="nav-links">
+        <a href="#" onclick="scrollToTop(event)">Beranda</a>
+        <a href="#tentang-kami">Tentang Kami</a>
+        <a href="#hubungi-kami">Hubungi Kami</a>
+    </div>
+
+
     </nav>
     <header class="header-first">
         <div class="image-background">
@@ -23,13 +25,13 @@
             <div class="header-overlay">
                 <h1>TINGKATKAN BISNIS ANDA KE PERINGKAT ATAS GOOGLE!</h1>
                 <p>Website Modern + SEO Optimal = Penjualan Naik!</p>
-                <a href="#pesan" class="cta-button">Pesan Paket SEO</a>
+                <a href="#pesan-paket" class="cta-button">Pesan Paket SEO</a>
             </div>
         </div>
     </header>
     <main>
     {{-- Konten utama --}}
-    <section class="sub-title">
+    <section class="sub-title" id="tentang-kami">
         <h2>Kenapa Memilih Imersa SEO?</h2>
         <p>Kami hadir untuk membantu bisnis Anda tumbuh secara digital dengan strategi SEO yang terbukti efektif</p>
     </section>
@@ -46,7 +48,7 @@
         </div>
     </section>
     <section class="sub-title">
-        <h2>Apa yang bisa dilakukan IMERSA SEO untuk bisanis Anda?</h2>
+        <h2>Apa yang bisa dilakukan IMERSA SEO untuk bisnis Anda?</h2>
         <p>
             Solusi menyeluruh untuk meningkatkan visibilitas dan performa bisnis Anda di Google
         </p>
@@ -126,7 +128,7 @@
             <div class="step">Layanan Dimulai</div>
         </section>
     </section>
-    <section class="sub-title">
+    <section class="sub-title" id="pesan-paket">
         <h2>Layanan SEO yang kami tawarkan</h2>
         <p>
            Kami menyediakan dua jenis paket layanan yang dirancang khusus untuk bisnis Anda
@@ -200,7 +202,7 @@
 
     </main>
 
-    <footer class="imersa-footer">
+    <footer class="imersa-footer" id="hubungi-kami">
         <div class="footer-top">
             <div class="footer-left">
             <img src="{{ asset('assets/picture/pic_logoImersa.png') }}" alt="Imersa Logo" class="footer-logo">
@@ -259,6 +261,24 @@
         navLinks.classList.toggle('active');
         });
     });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const toggle = document.createElement('button');
+        toggle.classList.add('menu-toggle');
+        toggle.innerHTML = '&#9776;'; // Hamburger icon
+        document.querySelector('.navbar').appendChild(toggle);
+
+        const navLinks = document.querySelector('.nav-links');
+        toggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    });
+
+    // Fungsi untuk scroll ke atas (reload halaman)
+    function scrollToTop(event) {
+        event.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
     </script>
 
 

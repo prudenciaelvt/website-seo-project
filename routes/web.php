@@ -37,6 +37,9 @@ Route::prefix('admin')->group(function () {
     // === Invoice & Kwitansi ===
     // Route::view('/invoice', 'admin.invoice')->name('admin.invoice'); // Halaman view invoice (static view)
     Route::get('/invoice', [InvoiceController::class, 'index'])->name('admin.invoice');
+
+    Route::delete('/invoice/{id}', [InvoiceController::class, 'destroy'])->name('invoices.destroy');
+
     
     // Detail customer berdasarkan tipe paket
     Route::get('/customer/{type}/{id}', [CustomerController::class, 'show'])->name('admin.customer.show'); 

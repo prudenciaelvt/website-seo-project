@@ -4,23 +4,32 @@
     <meta charset="utf-8">
     <title>Invoice</title>
     <style>
+        @page {
+            size: A5;
+            margin: 10mm; /* Margin lebih kecil, seimbang */
+        }
+
         body {
             font-family: Arial, Helvetica, sans-serif;
             font-size: 12px;
             color: #000;
             margin: 0;
             padding: 0;
+            background: #fff;
         }
 
+        /* === CONTAINER UTAMA === */
         .container {
-            padding: 15px 25px;
-            width: 100%;
+            width: 90%; /* Biar lebih ke tengah */
+            max-width: 128mm; /* A5 lebar: 148mm - margin */
+            margin: 0 auto; /* Tengah horizontal */
+            padding: 10px 15px;
             box-sizing: border-box;
         }
 
-        /* Header layout */
+        /* === HEADER === */
         .layout-header {
-            margin-bottom: 8px;
+            margin-bottom: 15px;
             margin-top: 10px;
         }
 
@@ -32,7 +41,7 @@
             vertical-align: middle;
         }
 
-        /* Contact info table */
+        /* === CONTACT INFO === */
         .contact-info {
             line-height: 1.5;
             width: 100%;
@@ -45,7 +54,7 @@
         }
 
         .contact-info img {
-            height: 18px;
+            height: 16px;
             vertical-align: middle;
             margin-right: 6px;
             display: inline-block;
@@ -55,9 +64,10 @@
         .contact-info span {
             display: inline-block;
             vertical-align: middle;
+            font-size: 11px;
         }
 
-        /* Products table */
+        /* === PRODUK TABLE === */
         table.products {
             width: 100%;
             border-collapse: collapse;
@@ -69,40 +79,47 @@
             background: #0072BC;
             color: white;
             font-weight: bold;
-            padding: 5px;
+            padding: 4px;
             text-align: left;
             border: 1px solid #ccc;
         }
 
         table.products td {
-            padding: 5px;
+            padding: 4px;
             border: 1px solid #ccc;
             word-wrap: break-word;
+            font-size: 11px;
         }
 
-        /* Totals section */
+        /* === TOTAL SECTION === */
         .bottom-section {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            gap: 20px;
-            margin-top: 20px;
+            gap: 15px;
+            margin-top: 15px;
         }
 
         .terms {
             flex: 1;
-            max-width: 65%;
+            max-width: 60%;
             line-height: 1.4;
+            font-size: 11px;
+        }
+
+        .totals-wrapper {
+            flex: none;
         }
 
         .totals {
             border-collapse: collapse;
             width: auto;
+            font-size: 11px;
         }
 
         .totals td {
             border: 1px solid #ccc;
-            padding: 5px 10px;
+            padding: 4px 8px;
             text-align: right;
         }
 
@@ -116,12 +133,14 @@
             font-weight: bold;
         }
 
-        /* Footer strip */
+        /* === FOOTER === */
         .footer-strip {
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
             width: 100%;
+            margin-top: 20px;
         }
 
         .footer-strip img {
@@ -129,9 +148,24 @@
         }
 
         .footer-strip span {
-            font-size: 12px;
+            font-size: 11px;
             font-family: Arial, sans-serif;
             line-height: 1;
+        }
+
+        /* === LINE SEPARATOR === */
+        hr {
+            border: none;
+            border-top: 2px solid #0072BC;
+            margin: 6px 0;
+        }
+
+        /* === PRINT MEDIA === */
+        @media print {
+            body {
+                width: 148mm;
+                height: 210mm;
+            }
         }
     </style>
 </head>
@@ -140,7 +174,7 @@
 
     <!-- HEADER STRIP -->
     <div style="text-align:right;">
-        <img src="{{ public_path('assets/picture/pic_headerTop.png') }}" alt="Header Top" style="width:70%; height: 25px;">
+        <img src="{{ public_path('assets/picture/pic_headerTop.png') }}" alt="Header Top" style="width:70%; height: 20px;">
     </div>
 
     <!-- LOGO & TITLE -->
@@ -149,18 +183,18 @@
             <tr>
                 <td>
                     @if($logo)
-                        <img src="{{ $logo }}" alt="Logo" style="height:40px;"> <!-- Kecilkan logo -->
+                        <img src="{{ $logo }}" alt="Logo" style="height:35px;">
                     @endif
                 </td>
                 <td style="text-align:right;">
-                    <span style="font-size:28px; font-weight:bold; color:#0072BC;">INVOICE</span>
+                    <span style="font-size:24px; font-weight:bold; color:#0072BC;">INVOICE</span>
                 </td>
             </tr>
         </table>
     </div>
 
     <!-- CLIENT & INVOICE DETAILS -->
-    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
+    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 5px;">
         <div class="invoice-to">
             Invoice To:<br>{!! nl2br(e($client)) !!}
         </div>
@@ -170,35 +204,20 @@
         </div>
     </div>
 
-    <hr style="border: none; border-top: 2px solid #0072BC; margin: 8px 0;">
+    <hr>
 
     <!-- CONTACT INFO -->
     <table class="contact-info">
         <tr>
-            <td>
-                <img src="{{ public_path('assets/picture/pic_logoTelp.png') }}" alt="Telp">
-                <span>+62 851-5545-9633</span>
-            </td>
-            <td>
-                <img src="{{ public_path('assets/picture/pic_logoInternet.png') }}" alt="Internet">
-                <span>https://imersa.co.id/</span>
-            </td>
+            <td><img src="{{ public_path('assets/picture/pic_logoTelp.png') }}"> <span>+62 851-5545-9633</span></td>
+            <td><img src="{{ public_path('assets/picture/pic_logoInternet.png') }}"> <span>https://imersa.co.id/</span></td>
         </tr>
         <tr>
-            <td>
-                <img src="{{ public_path('assets/picture/pic_logoEmail.png') }}" alt="Email">
-                <span>mail@imersa.co.id</span>
-            </td>
-            <td>
-                <img src="{{ public_path('assets/picture/pic_logoKartu.png') }}" alt="Kartu">
-                <span>BCA 8465460594 an Rias Solikha</span>
-            </td>
+            <td><img src="{{ public_path('assets/picture/pic_logoEmail.png') }}"> <span>mail@imersa.co.id</span></td>
+            <td><img src="{{ public_path('assets/picture/pic_logoKartu.png') }}"> <span>BCA 8465460594 an Rias Solikha</span></td>
         </tr>
         <tr>
-            <td colspan="2">
-                <img src="{{ public_path('assets/picture/pic_logoAlamat.png') }}" alt="Alamat" style="height:18px; margin-right:6px;">
-                <span style="max-width:90%;">Jl. Puntodewo No. 2 Baron, Nganjuk, Jawa Timur 64394</span>
-            </td>
+            <td colspan="2"><img src="{{ public_path('assets/picture/pic_logoAlamat.png') }}"> <span>Jl. Puntodewo No. 2 Baron, Nganjuk, Jawa Timur 64394</span></td>
         </tr>
     </table>
 
@@ -224,7 +243,7 @@
         </tbody>
     </table>
 
-    <!-- FOOTER TOTALS -->
+    <!-- TOTAL SECTION -->
     <div class="bottom-section">
         <div class="terms">
             <b>TERM AND CONDITIONS</b><br>
@@ -238,24 +257,22 @@
                     <td>{{ number_format($subtotal,0,',','.') }}</td>
                 </tr>
                 <tr>
-                    <td>Sales Tax</td>
-                    <td>0</td>
+                    <td>Pajak (11%)</td>
+                    <td>{{ number_format($subtotal * 0.11, 0, ',', '.') }}</td>
                 </tr>
                 <tr class="total-row">
                     <td>Total</td>
-                    <td>{{ number_format($total,0,',','.') }}</td>
+                    <td>{{ number_format($subtotal * 1.11, 0, ',', '.') }}</td>
                 </tr>
             </table>
         </div>
     </div>
 
-    <br><br>
-
-    <!-- FOOTER STRIP -->
+    <!-- FOOTER -->
     <div class="footer-strip">
-        <img src="{{ public_path('assets/picture/pic_headerBottom.png') }}" alt="Header Bottom" style="height: 20px; width:70%;">
-        <img src="{{ public_path('assets/picture/pic_logoInstagram.png') }}" alt="Instagram" style="width: 18px; height: 18px;">
-        <img src="{{ public_path('assets/picture/pic_logoTiktok.png') }}" alt="TikTok" style="width: 18px; height: 18px;">
+        <img src="{{ public_path('assets/picture/pic_headerBottom.png') }}" alt="Header Bottom" style="height: 20px; width:65%;">
+        <img src="{{ public_path('assets/picture/pic_logoInstagram.png') }}" alt="Instagram" style="width: 16px; height: 16px;">
+        <img src="{{ public_path('assets/picture/pic_logoTiktok.png') }}" alt="TikTok" style="width: 16px; height: 16px;">
         <span>@imersa.co.id</span>
     </div>
 

@@ -265,5 +265,14 @@ class InvoiceController extends Controller
         return Excel::download(new InvoicesFlattenedExport, 'invoices-flattened.xlsx');
     }
 
+    public function destroy($id)
+    {
+        $invoice = Invoice::findOrFail($id);
+        $invoice->delete();
+
+        return redirect()->back()->with('success', 'Invoice berhasil dihapus.');
+    }
+
+
 
 }
