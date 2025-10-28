@@ -27,7 +27,7 @@ class CustomerExport implements FromCollection, WithHeadings
             DB::raw("'-' as komisi"),
             'jangka_waktu',
             'target_market',
-            DB::raw("'-' as status_invoice")
+            
         );
 
         // Ambil data Leads
