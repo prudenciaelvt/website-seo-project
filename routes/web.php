@@ -34,11 +34,12 @@ Route::prefix('admin')->group(function () {
     Route::get('/customers/pdf', [CustomerController::class, 'exportPdf'])->name('admin.customers.pdf'); // Export customer ke PDF
     Route::get('/customers/excel', [CustomerController::class, 'exportExcel'])->name('admin.customers.excel'); // Export customer ke Excel
 
+Route::delete('/customers/{type}/{id}', [CustomerController::class, 'destroy'])->name('customers.destroy');
+
     // === Invoice & Kwitansi ===
     // Route::view('/invoice', 'admin.invoice')->name('admin.invoice'); // Halaman view invoice (static view)
     Route::get('/invoice', [InvoiceController::class, 'index'])->name('admin.invoice');
 
-    Route::delete('/invoice/{id}', [InvoiceController::class, 'destroy'])->name('invoices.destroy');
 
     
     // Detail customer berdasarkan tipe paket

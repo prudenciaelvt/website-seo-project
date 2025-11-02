@@ -182,4 +182,21 @@ class CustomerController extends Controller
         // Download file Excel dengan data customer
         return Excel::download(new CustomerExport, 'customers.xlsx');
     }
+
+    public function destroy($type, $id)
+    {
+        if ($type === 'seo') {
+            $customer = SeoPackage::findOrFail($id);
+        } elseif ($type === 'leads') {
+            $customer = LeadsPackage::findOrFail($id);
+        } else {
+            return redirect()->back()->with('error', 'Tipe tidak dikenal.');
+        }
+
+        $customer->delete();
+
+        return redirect()->back()->with('success', 'Data customer berhasil dihapus.');
+    }
+
+
 }

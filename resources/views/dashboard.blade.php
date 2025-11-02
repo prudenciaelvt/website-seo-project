@@ -249,37 +249,77 @@
         </div>
     </footer>
 
-    <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const toggle = document.createElement('button');
-        toggle.classList.add('menu-toggle');
-        toggle.innerHTML = '&#9776;'; // Hamburger icon
-        document.querySelector('.navbar').appendChild(toggle);
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const navbar = document.querySelector('.navbar');
+    const toggle = document.createElement('button');
+    const overlay = document.createElement('div');
+    
+    toggle.classList.add('menu-toggle');
+    toggle.innerHTML = '&#9776;';
+    navbar.appendChild(toggle);
 
-        const navLinks = document.querySelector('.nav-links');
-        toggle.addEventListener('click', () => {
+    overlay.classList.add('nav-overlay');
+    document.body.appendChild(overlay);
+
+    const navLinks = document.querySelector('.nav-links');
+
+    // Toggle menu function
+    function toggleMenu() {
         navLinks.classList.toggle('active');
-        });
-    });
-
-    document.addEventListener('DOMContentLoaded', function () {
-        const toggle = document.createElement('button');
-        toggle.classList.add('menu-toggle');
-        toggle.innerHTML = '&#9776;'; // Hamburger icon
-        document.querySelector('.navbar').appendChild(toggle);
-
-        const navLinks = document.querySelector('.nav-links');
-        toggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-    });
-
-    // Fungsi untuk scroll ke atas (reload halaman)
-    function scrollToTop(event) {
-        event.preventDefault();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        overlay.classList.toggle('active');
+        document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
     }
-    </script>
+
+    // Event listeners
+    toggle.addEventListener('click', function(e) {
+        e.stopPropagation(); // Mencegah event bubbling
+        toggleMenu();
+    });
+
+    // Close menu when clicking on overlay
+    overlay.addEventListener('click', toggleMenu);
+
+    // Close menu when clicking anywhere outside the menu on mobile
+    document.addEventListener('click', function(e) {
+        if (window.innerWidth <= 768 && 
+            navLinks.classList.contains('active') && 
+            !navbar.contains(e.target)) {
+            toggleMenu();
+        }
+    });
+
+    // Close menu when clicking on links
+    const navLinksItems = navLinks.querySelectorAll('a');
+    navLinksItems.forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth <= 768) {
+                toggleMenu();
+            }
+        });
+    });
+
+    // Close menu on escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+            toggleMenu();
+        }
+    });
+
+    // Close menu on resize if screen becomes larger
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768 && navLinks.classList.contains('active')) {
+            toggleMenu();
+        }
+    });
+});
+
+// Fungsi untuk scroll ke atas (reload halaman)
+function scrollToTop(event) {
+    event.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
 
 
 </body>

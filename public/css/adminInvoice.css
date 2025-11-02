@@ -1,10 +1,12 @@
-/* === Container Utama === */
+/* === Container Standard === */
 .invoice-container {
-    max-width: 110%;
+    max-width: calc(100% - 40px);
+    margin: 0 auto;
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
 }
 
 .invoice-container h2 {
@@ -34,6 +36,7 @@
     border-radius: 6px;
     font-size: 12px;
     background-color: #fafafa;
+    box-sizing: border-box;
 }
 
 .invoice-form textarea {
@@ -61,6 +64,8 @@
     border-radius: 6px;
     cursor: pointer;
     transition: background-color 0.2s ease;
+    flex: 1;
+    min-width: 80px;
 }
 
 .option-group button:hover {
@@ -79,6 +84,7 @@
     border: 1px solid #ccc;
     border-radius: 6px;
     font-size: 12px;
+    box-sizing: border-box;
 }
 
 /* === Tombol Tambah Paket === */
@@ -91,6 +97,7 @@
     cursor: pointer;
     font-weight: 500;
     transition: background-color 0.3s ease;
+    width: 100%;
 }
 
 .btn-add-paket:hover {
@@ -100,7 +107,6 @@
 /* === Tombol Simpan / Generate === */
 .btn-save,
 .btn-generate {
-    
     background-color: #009688;
     color: white;
     padding: 12px 25px;
@@ -110,6 +116,7 @@
     cursor: pointer;
     width: 100%;
     transition: background-color 0.3s ease;
+    box-sizing: border-box;
 }
 
 .btn-save:hover,
@@ -127,6 +134,10 @@
     border-radius: 6px;
     text-decoration: none;
     transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+    margin-bottom: 10px;
 }
 
 .btn-excel-all {
@@ -168,6 +179,7 @@
     align-items: center;
     justify-content: flex-start;
     gap: 10px;
+    flex-wrap: wrap;
 }
 
 /* Hilangkan margin form agar sejajar */
@@ -194,6 +206,8 @@
     transition: all 0.2s ease;
     height: 36px;
     line-height: 1;
+    flex: 1;
+    min-width: 100px;
 }
 
 /* Tombol Generate */
@@ -220,4 +234,314 @@
 .btn-aksi i {
     font-size: 13px;
     line-height: 1;
+}
+
+/* === RESPONSIVE DESIGN YANG KONSISTEN === */
+
+
+/* Tablet (768px - 1024px) */
+@media screen and (max-width: 1024px) {
+    .invoice-container {
+        max-width: calc(100% - 30px);
+        padding: 15px;
+    }
+    
+    .invoice-container h2 {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .table-wrapper {
+        max-height: 350px;
+    }
+    
+    .aksi-column {
+        gap: 8px;
+    }
+    
+    .btn-aksi {
+        min-width: 90px;
+        padding: 7px 12px;
+        font-size: 11px;
+    }
+    
+    .invoice-form input[type="text"],
+    .invoice-form input[type="email"],
+    .invoice-form textarea {
+        padding: 10px;
+        font-size: 11px;
+    }
+}
+
+/* Mobile Large (576px - 768px) */
+@media screen and (max-width: 768px) {
+    .invoice-container {
+        max-width: calc(100% - 20px);
+        padding: 12px;
+        border-radius: 6px;
+        margin-top: 40px; 
+    }
+    
+    .invoice-container h2 {
+        font-size: 18px;
+        padding-bottom: 8px;
+        margin-bottom: 15px;
+    }
+    
+    .invoice-form .form-group {
+        margin-bottom: 15px;
+    }
+    
+    .invoice-form input[type="text"],
+    .invoice-form input[type="email"],
+    .invoice-form textarea {
+        padding: 10px;
+        font-size: 11px;
+    }
+    
+    .option-group {
+        gap: 8px;
+    }
+    
+    .option-group button {
+        padding: 7px 12px;
+        font-size: 11px;
+        min-width: 70px;
+    }
+    
+    .option-group .custom-input {
+        width: 70px;
+        padding: 7px 8px;
+    }
+    
+    .btn-add-paket,
+    .btn-save,
+    .btn-generate,
+    .btn-excel-all,
+    .btn-tambah-invoice {
+        padding: 10px 15px;
+        font-size: 11px;
+    }
+    
+    .table-wrapper {
+        max-height: 300px;
+        margin-top: 15px;
+    }
+    
+    .aksi-column {
+        flex-direction: column;
+        gap: 5px;
+        width: 100%;
+    }
+    
+    .aksi-column form {
+        width: 100%;
+    }
+    
+    .btn-aksi {
+        width: 100%;
+        min-width: auto;
+        margin-bottom: 5px;
+    }
+}
+
+/* Mobile Portrait (max-width: 576px) */
+@media screen and (max-width: 576px) {
+    .invoice-container {
+        max-width: calc(100% - 10px);
+        padding: 10px;
+        margin: 5px auto;
+        margin-top: 50px; 
+        box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    }
+    
+    .invoice-container h2 {
+        font-size: 16px;
+        text-align: center;
+    }
+    
+    .invoice-form label {
+        font-size: 12px;
+    }
+    
+    .option-group {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .option-group button {
+        width: 100%;
+        min-width: auto;
+    }
+    
+    .option-group .custom-input {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .btn-add-paket,
+    .btn-save,
+    .btn-generate {
+        padding: 12px 15px;
+        font-size: 12px;
+    }
+    
+    .btn-excel-all,
+    .btn-tambah-invoice {
+        margin-bottom: 8px;
+        padding: 12px 15px;
+    }
+    
+    .table-wrapper {
+        max-height: 250px;
+        border: 1px solid #eee;
+    }
+    
+    /* Improve table readability on mobile */
+    .table-wrapper table {
+        font-size: 11px;
+    }
+    
+    .table-wrapper th,
+    .table-wrapper td {
+        padding: 6px 4px;
+    }
+    
+    .aksi-column {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .btn-aksi {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Mobile Small (425px - 576px) */
+@media screen and (max-width: 576px) {
+    .invoice-container {
+        padding: 12px;
+        margin-top: 50px;
+    }
+    
+    .invoice-container h2 {
+        font-size: 16px;
+    }
+}
+
+/* Mobile Extra Small (320px - 425px) */
+@media screen and (max-width: 425px) {
+    .invoice-container {
+        padding: 10px;
+        margin-top: 50px;
+    }
+    
+    .invoice-container h2 {
+        font-size: 16px;
+        margin-bottom: 15px;
+    }
+    
+    table {
+        font-size: 10px;
+    }
+    
+    table th,
+    table td {
+        padding: 5px 6px;
+        min-width: 70px;
+    }
+    
+    .btn-aksi {
+        font-size: 10px;
+        padding: 6px 10px;
+    }
+}
+
+/* Very Small Mobile (max-width: 360px) */
+@media screen and (max-width: 360px) {
+    .invoice-container {
+        max-width: calc(100% - 8px);
+        padding: 8px;
+        margin-top: 50px;
+    }
+    
+    .invoice-container h2 {
+        font-size: 15px;
+    }
+    
+    .invoice-form input[type="text"],
+    .invoice-form input[type="email"],
+    .invoice-form textarea {
+        padding: 8px;
+        font-size: 10px;
+    }
+    
+    .btn-add-paket,
+    .btn-save,
+    .btn-generate,
+    .btn-excel-all,
+    .btn-tambah-invoice {
+        padding: 10px 12px;
+        font-size: 10px;
+    }
+    
+    .table-wrapper {
+        max-height: 200px;
+    }
+    
+    .table-wrapper table {
+        font-size: 10px;
+    }
+    
+    .btn-aksi {
+        font-size: 9px;
+        padding: 5px 8px;
+    }
+}
+
+/* Desktop Large (min-width: 1440px) */
+@media screen and (min-width: 1440px) {
+    .invoice-container {
+        max-width: 1300px;
+    }
+    
+    table {
+        font-size: 15px;
+    }
+    
+    table th,
+    table td {
+        padding: 15px 20px;
+    }
+}
+
+/* Landscape Mobile */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+    .invoice-container {
+        padding: 15px;
+    }
+    
+    .table-wrapper {
+        max-height: 250px;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .invoice-container {
+        box-shadow: none;
+        border: 1px solid #000;
+        max-width: 100%;
+        margin: 0;
+    }
+    
+    .btn-add-paket,
+    .btn-save,
+    .btn-generate,
+    .btn-excel-all,
+    .btn-tambah-invoice,
+    .btn-aksi {
+        display: none !important;
+    }
 }

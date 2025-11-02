@@ -1,17 +1,12 @@
-/* 🔹 Container utama untuk halaman Kwitansi */
+/* === Container Standard === */
 .kwitansi-container {
-    max-width: 110%;
+    max-width: calc(100% - 40px);
+    margin: 0 auto;
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-/* 🔹 Judul halaman */
-h2 {
-    font-size: 24px;
-    font-weight: 600;
-    margin-bottom: 30px;
+    overflow: hidden;
 }
 
 .kwitansi-container h2 {
@@ -21,65 +16,129 @@ h2 {
     padding-bottom: 10px;
 }
 
-/* 🔹 Bagian pencarian */
+/* Bagian pencarian */
 .search-section {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
 .search-label {
-    margin-right: 10px;
     font-weight: bold;
+    margin-bottom: 8px;
 }
 
 .search-section input {
-    padding: 8px;
+    padding: 12px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 6px;
     width: 250px;
+    font-size: 12px;
+    background-color: #fafafa;
+    box-sizing: border-box;
 }
 
-/* 🔹 Style umum tombol */
+/*Style umum tombol */
 .btn {
-    padding: 8px 12px;
+    padding: 10px 18px;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 0.9rem;
+    font-size: 12px;
     text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: 500;
 }
 
-/* 🔹 Tombol khusus untuk cari (biru) */
+/*Tombol khusus untuk cari (biru) */
 .btn-cari {
     background: #007bff;
     color: white;
+    height: 42px;
 }
 
-/* 🔹 Tombol khusus untuk generate kwitansi (hijau) */
+.btn-cari:hover {
+    background: #0056b3;
+    transform: translateY(-2px);
+}
+
+/*Tombol khusus untuk generate kwitansi (hijau) */
 .btn-kwitansi {
     background: #28a745;
     color: white;
 }
 
-/* 🔹 Efek hover umum untuk semua tombol */
-.btn:hover {
-    opacity: 0.9;
+.btn-kwitansi:hover {
+    background: #1e7e34;
+    transform: translateY(-2px);
 }
 
-/* 🔹 Wrapper tabel agar bisa scroll horizontal */
+/*  Wrapper tabel agar bisa scroll */
 .table-wrapper {
+    max-height: 400px;
+    overflow-y: auto;
     overflow-x: auto;
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
 }
 
+/* Style tabel */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    background-color: #fff;
+}
+
+/* Header tabel */
+table th {
+    background-color: #f7f9fc;
+    font-weight: 600;
+    color: #000000;
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 2px solid #e2e8f0;
+    position: sticky;
+    top: 0;
+}
+
+/* Sel tabel */
+table td {
+    padding: 12px 16px;
+    color: #000000;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+/* Hover baris */
+table tbody tr:hover {
+    background-color: #f0f9ff;
+}
+
+/* Alternating row */
+table tbody tr:nth-child(even) {
+    background-color: #fcfcfc;
+}
+
+/* Tombol Warning (Orange) */
 .btn-warning {
-    padding: 6px 12px;
+    padding: 8px 14px;
     font-size: 12px;
-    border-radius: 4px;
+    border-radius: 6px;
     background-color: #ff9800;
     color: #fff;
     text-decoration: none;
-    display: inline-block;
-    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    border: none;
+    cursor: pointer;
     transition: all 0.2s ease;
+    font-weight: 500;
+    height: 36px;
 }
 
 .btn-warning:hover {
@@ -87,9 +146,285 @@ h2 {
     transform: scale(1.05);
 }
 
-
-/* 🔹 Efek active tombol orange */
 .btn-warning:active {
     background-color: #cc7a00;
     transform: scale(0.97);
+}
+
+/* Kolom Aksi */
+.aksi-column {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* =========================== */
+/* === RESPONSIVE DESIGN YANG KONSISTEN === */
+/* =========================== */
+
+/* Tablet (768px - 1024px) */
+@media screen and (max-width: 1024px) {
+    .kwitansi-container {
+        max-width: calc(100% - 30px);
+        padding: 15px;
+    }
+    
+    .kwitansi-container h2 {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .search-section input {
+        width: 200px;
+    }
+    
+    .table-wrapper {
+        max-height: 350px;
+    }
+    
+    table {
+        font-size: 13px;
+    }
+    
+    table th,
+    table td {
+        padding: 10px 12px;
+    }
+}
+
+/* Mobile Large (576px - 768px) */
+@media screen and (max-width: 768px) {
+    .kwitansi-container {
+        max-width: calc(100% - 20px);
+        padding: 12px;
+        border-radius: 6px;
+        margin-top: 40px;
+    }
+    
+    .kwitansi-container h2 {
+        font-size: 18px;
+        padding-bottom: 8px;
+        margin-bottom: 15px;
+    }
+    
+    .search-section {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+    }
+    
+    .search-section input {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+    
+    .btn-cari {
+        width: 100%;
+        height: 42px;
+    }
+    
+    .table-wrapper {
+        max-height: 300px;
+        margin-top: 15px;
+    }
+    
+    table {
+        font-size: 12px;
+    }
+    
+    table th,
+    table td {
+        padding: 8px 10px;
+        min-width: 100px;
+    }
+    
+    .aksi-column {
+        flex-direction: column;
+        gap: 5px;
+        width: 100%;
+    }
+    
+    .btn-warning {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Mobile Portrait (max-width: 576px) */
+@media screen and (max-width: 576px) {
+    .kwitansi-container {
+        max-width: calc(100% - 10px);
+        padding: 10px;
+        margin: 5px auto;
+        margin-top: 50px;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    }
+    
+    .kwitansi-container h2 {
+        font-size: 16px;
+        text-align: center;
+    }
+    
+    .search-section {
+        margin-bottom: 15px;
+    }
+    
+    .search-label {
+        font-size: 12px;
+    }
+    
+    .search-section input {
+        padding: 10px;
+        font-size: 11px;
+    }
+    
+    .btn {
+        padding: 10px 15px;
+        font-size: 11px;
+    }
+    
+    .table-wrapper {
+        max-height: 250px;
+        border: 1px solid #eee;
+    }
+    
+    table {
+        font-size: 11px;
+    }
+    
+    table th,
+    table td {
+        padding: 6px 8px;
+        min-width: 80px;
+    }
+    
+    .btn-warning {
+        padding: 7px 12px;
+        font-size: 11px;
+    }
+}
+
+/* Mobile Small (425px - 576px) */
+@media screen and (max-width: 576px) {
+    .kwitansi-container {
+        padding: 12px;
+        margin-top: 50px;
+    }
+    
+    .kwitansi-container h2 {
+        font-size: 16px;
+    }
+}
+
+/* Mobile Extra Small (320px - 425px) */
+@media screen and (max-width: 425px) {
+    .kwitansi-container {
+        padding: 10px;
+        margin-top: 50px;
+    }
+    
+    .kwitansi-container h2 {
+        font-size: 16px;
+        margin-bottom: 15px;
+    }
+    
+    table {
+        font-size: 10px;
+    }
+    
+    table th,
+    table td {
+        padding: 5px 6px;
+        min-width: 70px;
+    }
+    
+    .btn-warning {
+        font-size: 10px;
+        padding: 6px 10px;
+    }
+}
+
+/* Very Small Mobile (max-width: 360px) */
+@media screen and (max-width: 360px) {
+    .kwitansi-container {
+        max-width: calc(100% - 8px);
+        padding: 8px;
+        margin-top: 50px;
+    }
+    
+    .kwitansi-container h2 {
+        font-size: 15px;
+    }
+    
+    .search-section input {
+        padding: 8px;
+        font-size: 10px;
+    }
+    
+    .btn {
+        padding: 8px 12px;
+        font-size: 10px;
+    }
+    
+    .table-wrapper {
+        max-height: 200px;
+    }
+    
+    table {
+        font-size: 10px;
+    }
+    
+    .btn-warning {
+        font-size: 9px;
+        padding: 5px 8px;
+    }
+}
+
+/* Desktop Large (min-width: 1440px) */
+@media screen and (min-width: 1440px) {
+    .kwitansi-container {
+        max-width: 1300px;
+    }
+    
+    table {
+        font-size: 15px;
+    }
+    
+    table th,
+    table td {
+        padding: 15px 20px;
+    }
+}
+
+/* Landscape Mobile */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+    .kwitansi-container {
+        padding: 15px;
+    }
+    
+    .table-wrapper {
+        max-height: 250px;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .kwitansi-container {
+        box-shadow: none;
+        border: 1px solid #000;
+        max-width: 100%;
+        margin: 0;
+    }
+    
+    .search-section,
+    .btn-warning {
+        display: none !important;
+    }
+    
+    table {
+        box-shadow: none;
+        border: 1px solid #000;
+    }
 }

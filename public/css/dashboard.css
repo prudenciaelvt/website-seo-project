@@ -55,122 +55,115 @@ body, h1, h2, h3, p {
   color: #0077cc;
 }
 
+/* Menu Toggle - Hidden by default */
+.menu-toggle {
+  display: none;
+  cursor: pointer;
+  font-size: 28px;
+  color: #333;
+  background: none;
+  border: none;
+}
+
 /* Main Content */
 /* HEADER */
-/* HEADER */
 .header-first {
-    width: 100%;
-    position: relative;
-    overflow: hidden;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
 }
 
 .image-background {
-    position: relative;
-    width: 100%;
-    height: auto;
+  position: relative;
+  width: 100%;
+  height: auto;
 }
 
 .image-background img {
-    width: 100%;
-    height: 70vh; /* Menggunakan viewport height untuk responsif */
-    object-fit: cover;
-    display: block;
-    filter: brightness(0.5); 
-    margin-bottom: 2px;
+  width: 100%;
+  height: 70vh;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.5); 
+  margin-bottom: 2px;
 }
 
 .header-overlay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    color: white;
-    padding: 1rem;
-    width: 90%;
-    max-width: 800px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  padding: 1rem;
+  width: 90%;
+  max-width: 800px;
 }
 
 .header-overlay h1 {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-    line-height: 1.3;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  line-height: 1.3;
 }
 
 .header-overlay p {
-    font-size: 1.2rem;
-    font-style: italic;
-    margin-bottom: 1.5rem;
-    line-height: 1.4;
+  font-size: 1.2rem;
+  font-style: italic;
+  margin-bottom: 1.5rem;
+  line-height: 1.4;
 }
 
 .cta-button {
-    background-color: #4361ee;
-    color: white;
-    padding: 0.75rem 1.5rem;
-    border-radius: 0.25rem;
-    text-decoration: none;
-    font-weight: 500;
-    transition: background-color 0.3s ease;
-    display: inline-block;
+  background-color: #4361ee;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.25rem;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  display: inline-block;
 }
 
 .cta-button:hover {
-    background-color: #3a56d4;
+  background-color: #3a56d4;
 }
 
 /* IMERSA SEO NEWS */
 .sub-title {
   margin: 40px;
 }
-.sub-title h2{
-    font-size: 2.1rem;
-    text-align: center;
+
+.sub-title h2 {
+  font-size: 2.1rem;
+  text-align: center;
 }
 
-.sub-title p{
-    font-size: 1rem;
-    text-align: center;
-    color: #6c757d;
-    text-align: center;
+.sub-title p {
+  font-size: 1rem;
+  text-align: center;
+  color: #6c757d;
 }
  
 .imersa-news {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 2rem;
-    flex-wrap: wrap; 
-    background-color: #3DAAE1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap; 
+  background-color: #3DAAE1;
 }
 
 .imersa-text {
-    flex: 1;
-    font-size: 1.1rem;
-    line-height: 1.6;
-    padding: 1rem;
-}
-
-.imersa-pic {
-    flex: 1;
-    text-align: center;
-
-}
-
-.imersa-pic img {
-  width: auto;
-  height: 100%;
-  object-fit: cover;
-  transform: scaleY(1.2); 
-  transform: scaleX(1);
+  flex: 1;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  padding: 1rem;
 }
 
 .imersa-pic {
   flex: 1;
-  position: static;
-  z-index: 2;
-  margin: 0%;
+  text-align: center;
 }
 
 .imersa-pic img {
@@ -230,20 +223,6 @@ body, h1, h2, h3, p {
   color: #333;
 }
 
-
-@media (max-width: 768px) {
-  .imersa-box {
-    width: 100%;
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .imersa-benefit-pic img {
-    margin-bottom: 1rem;
-  }
-}
-
-
 .alur-layanan {
   display: flex;
   justify-content: center;
@@ -275,18 +254,6 @@ body, h1, h2, h3, p {
   font-weight: bold;
   color: black;
 }
-
-
-@media (max-width: 768px) {
-  .alur-layanan {
-    flex-direction: column;
-  }
-
-  .arrow {
-    transform: rotate(90deg);
-  }
-}
-
 
 .imersa-paket-seo {
   display: flex;
@@ -340,7 +307,6 @@ body, h1, h2, h3, p {
   margin-top: 30px;
 }
 
-
 .btn-daftar {
   background-color: #0077cc;
   color: #fff;
@@ -358,7 +324,6 @@ body, h1, h2, h3, p {
   background-color: #162d6b;
 }
 
-
 .paket-seo ol,
 .paket-leads ol {
   padding-left: 20px;
@@ -371,18 +336,7 @@ body, h1, h2, h3, p {
   margin-bottom: 10px;
 }
 
-@media (max-width: 768px) {
-  .imersa-paket-seo {
-    flex-direction: column;
-  }
-
-  .paket-seo,
-  .paket-leads {
-    flex: 1 1 100%;
-  }
-}
-
-
+/* Footer */
 .imersa-footer {
   font-family: 'Segoe UI', sans-serif;
   color: #000;
@@ -464,38 +418,90 @@ body, h1, h2, h3, p {
   font-size: 0.9rem;
 }
 
+/* ==================== RESPONSIVE STYLES ==================== */
 
-/* Responsive */
-/* General Responsive Setup */
-@media (max-width: 768px) {
+/* Tablet (768px - 1024px) */
+@media screen and (max-width: 1024px) {
+  .image-background img {
+    height: 60vh;
+  }
+  
+  .header-overlay h1 {
+    font-size: 1.8rem;
+  }
+  
+  .header-overlay p {
+    font-size: 1.1rem;
+  }
+  
+  .imersa-box {
+    width: 45%;
+  }
+  
+  .paket-seo,
+  .paket-leads {
+    flex: 1 1 100%;
+    margin-bottom: 20px;
+  }
+}
+
+/* Mobile (max-width: 768px) */
+@media screen and (max-width: 768px) {
+  /* Navbar */
   .navbar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
+    padding: 1rem;
+    flex-wrap: wrap;
   }
 
   .nav-links {
-    flex-direction: column;
+    display: none;
     width: 100%;
+    flex-direction: column;
     gap: 1rem;
+    margin-top: 1rem;
   }
 
+  .nav-links.active {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  /* Header */
+  .image-background img {
+    height: 50vh;
+  }
+  
+  .header-overlay {
+    width: 95%;
+    padding: 0.8rem;
+  }
+  
   .header-overlay h1 {
     font-size: 1.5rem;
   }
-
+  
   .header-overlay p {
     font-size: 1rem;
   }
+  
+  .cta-button {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  /* Sub Title */
+  .sub-title {
+    margin: 30px 20px;
+  }
 
   .sub-title h2 {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
   }
 
-  .sub-title p {
-    font-size: 0.95rem;
-  }
-
+  /* Imersa News */
   .imersa-news {
     flex-direction: column;
     padding: 1rem;
@@ -507,148 +513,33 @@ body, h1, h2, h3, p {
     flex: 1 1 100%;
   }
 
-  .imersa-box {
-    width: 100%;
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .alur-layanan {
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .arrow {
-    transform: rotate(90deg);
-  }
-
-  .imersa-paket-seo {
-    flex-direction: column;
-    padding: 1rem;
-  }
-
-  .paket-seo,
-  .paket-leads {
-    flex: 1 1 100%;
-    padding: 15px;
-  }
-
-  .footer-top {
-    flex-direction: column;
-    gap: 20px;
-    padding: 20px;
-  }
-
-  .footer-links {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .footer-description {
-    margin-top: 10px;
-  }
-}
-
-@media (max-width: 480px) {
-  .navbar .logo img {
-    width: 80px;
-  }
-
-  .header-overlay h1 {
-    font-size: 1.2rem;
-  }
-
-  .header-overlay p {
-    font-size: 0.9rem;
-  }
-
-  .cta-button {
-    padding: 0.6rem 1.2rem;
-    font-size: 0.9rem;
-  }
-
-  .step {
-    width: 120px;
-    height: 120px;
-    font-size: 0.9rem;
-    padding: 0.8rem;
-  }
-
-  .paket-seo h3,
-  .paket-leads h3 {
-    font-size: 1.5rem;
-  }
-
-  .paket-seo h4,
-  .paket-leads h4 {
-    font-size: 1rem;
-  }
-
-  .btn-daftar {
-    font-size: 0.9rem;
-    padding: 8px 16px;
-  }
-
-  .imersa-benefit-pic img {
-    width: 80px;
-  }
-
-  .footer-bottom {
-    font-size: 0.8rem;
-  }
-}
-
-
-/* Responsive Tablet & Mobile */
-@media (max-width: 768px) {
-  /* Navbar */
-  .navbar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-  }
-
-  .nav-links {
-    flex-direction: column;
-    width: 100%;
-    gap: 1rem;
-  }
-
-  /* Header */
-  .header-overlay h1 {
-    font-size: 1.4rem;
-  }
-
-  .header-overlay p {
-    font-size: 1rem;
-  }
-
-  /* News Section */
-  .imersa-news {
-    flex-direction: column;
-    padding: 1rem;
-  }
-
-  .imersa-text, .imersa-pic {
-    flex: 1 1 100%;
-  }
-
   .imersa-pic img {
     top: 0;
     margin-bottom: 0;
-    transform: scale(1);
+    position: static;
   }
 
-  /* SEO Benefits Box */
+  /* SEO Benefits */
+  .imersa-seo-benefits {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
   .imersa-box {
     width: 100%;
     flex-direction: column;
     text-align: center;
+    padding: 1rem;
+  }
+
+  .imersa-benefit-pic img {
+    margin-bottom: 1rem;
   }
 
   /* Alur Layanan */
   .alur-layanan {
     flex-direction: column;
+    padding: 1.5rem;
   }
 
   .arrow {
@@ -659,80 +550,103 @@ body, h1, h2, h3, p {
   .imersa-paket-seo {
     flex-direction: column;
     padding: 1rem;
+    gap: 20px;
   }
 
-  .paket-seo, .paket-leads {
+  .paket-seo,
+  .paket-leads {
     flex: 1 1 100%;
-    padding: 20px;
+    padding: 15px;
   }
 
   /* Footer */
   .footer-top {
     flex-direction: column;
-    gap: 1rem;
+    gap: 20px;
+    padding: 20px;
   }
 
   .footer-links {
     flex-direction: column;
-    gap: 0.5rem;
+    align-items: flex-start;
+    gap: 15px;
   }
 
   .footer-description {
-    margin-top: 1rem;
+    margin-top: 10px;
   }
 }
 
-/* Responsive*/
-@media (max-width: 480px) {
+/* Mobile Small (max-width: 480px) */
+@media screen and (max-width: 480px) {
   /* Navbar */
   .navbar .logo img {
     width: 80px;
   }
 
   /* Header */
-  .header-overlay h1 {
-    font-size: 1.2rem;
+  .image-background img {
+    height: 40vh;
+    min-height: 250px;
   }
-
+  
+  .header-overlay h1 {
+    font-size: 1.3rem;
+  }
+  
   .header-overlay p {
     font-size: 0.9rem;
   }
-
+  
   .cta-button {
     padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  /* Sub Title */
+  .sub-title h2 {
+    font-size: 1.5rem;
+  }
+
+  .sub-title p {
     font-size: 0.9rem;
   }
 
-  /* Alur Layanan */
+  /* Steps */
   .step {
-    width: 100px;
-    height: 100px;
-    font-size: 0.85rem;
-    padding: 1rem;
+    width: 120px;
+    height: 120px;
+    font-size: 0.9rem;
+    padding: 0.8rem;
   }
 
   /* Paket Section */
-  .paket-seo h3, .paket-leads h3 {
-    font-size: 1.4rem;
+  .paket-seo h3, 
+  .paket-leads h3 {
+    font-size: 1.5rem;
   }
 
-  .paket-seo h4, .paket-leads h4 {
+  .paket-seo h4, 
+  .paket-leads h4 {
     font-size: 1rem;
   }
 
   .btn-daftar {
     font-size: 0.9rem;
     padding: 8px 16px;
+    width: 100%;
+    margin: 10px 0;
   }
 
-  /* Benefit Pic */
+  /* Benefit Images */
   .imersa-benefit-pic img {
-    width: 70px;
+    width: 80px;
   }
 
   /* Footer */
   .footer-bottom {
     font-size: 0.8rem;
+    padding: 10px;
   }
 
   .social-icons a img {
@@ -741,340 +655,45 @@ body, h1, h2, h3, p {
   }
 }
 
-/* Responsive Navbar */
-.menu-toggle {
-  display: none;
-  cursor: pointer;
-  font-size: 28px;
-  color: #333;
-  background: none;
-  border: none;
-}
-
-.nav-links {
-  display: flex;
-  gap: 1rem;
-}
-
-/* Mobile Styles */
-@media (max-width: 768px) {
-  .nav-links {
-    position: fixed;
-    top: 0;
-    left: -320px;
-    height: 100%;
-    width: 250px;
-    background-color: #f3f3f3;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 2rem;
-    gap: 1.5rem;
-    transition: left 0.3s ease;
-    z-index: 1000;
-    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
-  }
-
-  .nav-links.active {
-    left: 0;
-  }
-
-  .menu-toggle {
-    display: block;
-    position: absolute;
-    right: 1rem;
-    top: 1.2rem;
-  }
-}
-
-
-
-/* Header Overlay Text & CTA */
-@media (max-width: 768px) {
-  .header-overlay {
-    padding: 1rem;
-  }
-
-  .header-overlay h1 {
-    font-size: 1.6rem;
-  }
-
-  .header-overlay p {
-    font-size: 1rem;
-  }
-
-  .cta-button {
-    width: 100%;
-    text-align: center;
-    padding: 0.75rem 1rem;
-  }
-}
-
-/* Imersa News & SEO Benefits */
-@media (max-width: 768px) {
-  .imersa-news, .imersa-seo-benefits {
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .imersa-text, .imersa-pic, .imersa-box {
-    width: 100%;
-    text-align: center;
-  }
-}
-
-/* Alur Layanan Steps */
-@media (max-width: 768px) {
-  .alur-layanan {
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .arrow {
-    transform: rotate(90deg);
-  }
-}
-
-/* Paket SEO & Leads */
-@media (max-width: 768px) {
-  .imersa-paket-seo {
-    flex-direction: column;
-    padding: 1rem;
-  }
-
-  .paket-seo, .paket-leads {
-    flex: 1 1 100%;
-    width: 100%;
-    padding: 15px;
-  }
-
-  .btn-daftar {
-    width: 100%;
-    margin: 10px 0;
-  }
-}
-
-/* Footer */
-@media (max-width: 768px) {
-  .footer-top {
-    flex-direction: column;
-    gap: 1rem;
-    padding: 20px;
-  }
-
-  .footer-links {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .footer-description {
-    margin-top: 1rem;
-  }
-}
-
-/* Tablet (768px - 1024px) */
-@media screen and (max-width: 1024px) {
-    .image-background img {
-        height: 60vh;
-    }
-    
-    .header-overlay h1 {
-        font-size: 1.8rem;
-        margin-bottom: 0.8rem;
-    }
-    
-    .header-overlay p {
-        font-size: 1.1rem;
-        margin-bottom: 1.2rem;
-    }
-    
-    .cta-button {
-        padding: 0.7rem 1.4rem;
-        font-size: 0.95rem;
-    }
-}
-
-/* Mobile Large (576px - 768px) */
-@media screen and (max-width: 768px) {
-    .image-background img {
-        height: 50vh;
-        min-height: 300px;
-    }
-    
-    .header-overlay {
-        width: 95%;
-        padding: 0.8rem;
-    }
-    
-    .header-overlay h1 {
-        font-size: 1.5rem;
-        margin-bottom: 0.7rem;
-        line-height: 1.4;
-    }
-    
-    .header-overlay p {
-        font-size: 1rem;
-        margin-bottom: 1rem;
-        line-height: 1.3;
-    }
-    
-    .cta-button {
-        padding: 0.6rem 1.2rem;
-        font-size: 0.9rem;
-    }
-}
-
-/* Mobile Small (425px - 576px) */
-@media screen and (max-width: 576px) {
-    .image-background img {
-        height: 45vh;
-        min-height: 250px;
-    }
-    
-    .header-overlay {
-        width: 98%;
-        padding: 0.5rem;
-    }
-    
-    .header-overlay h1 {
-        font-size: 1.3rem;
-        margin-bottom: 0.6rem;
-        line-height: 1.4;
-    }
-    
-    .header-overlay p {
-        font-size: 0.9rem;
-        margin-bottom: 0.8rem;
-        line-height: 1.3;
-    }
-    
-    .cta-button {
-        padding: 0.5rem 1rem;
-        font-size: 0.85rem;
-        border-radius: 0.2rem;
-    }
-}
-
-/* Mobile Extra Small (320px - 425px) */
-@media screen and (max-width: 425px) {
-    .image-background img {
-        height: 40vh;
-        min-height: 200px;
-    }
-    
-    .header-overlay h1 {
-        font-size: 1.1rem;
-        margin-bottom: 0.5rem;
-        line-height: 1.3;
-    }
-    
-    .header-overlay p {
-        font-size: 0.8rem;
-        margin-bottom: 0.7rem;
-        line-height: 1.2;
-    }
-    
-    .cta-button {
-        padding: 0.45rem 0.9rem;
-        font-size: 0.8rem;
-    }
-}
-
 /* Very Small Devices (max-width: 320px) */
 @media screen and (max-width: 320px) {
-    .image-background img {
-        height: 35vh;
-        min-height: 180px;
-    }
-    
-    .header-overlay h1 {
-        font-size: 1rem;
-        margin-bottom: 0.4rem;
-    }
-    
-    .header-overlay p {
-        font-size: 0.75rem;
-        margin-bottom: 0.6rem;
-    }
-    
-    .cta-button {
-        padding: 0.4rem 0.8rem;
-        font-size: 0.75rem;
-    }
-}
-
-/* Desktop Large (min-width: 1440px) */
-@media screen and (min-width: 1440px) {
-    .image-background img {
-        height: 80vh;
-    }
-    
-    .header-overlay h1 {
-        font-size: 2.5rem;
-    }
-    
-    .header-overlay p {
-        font-size: 1.4rem;
-    }
-    
-    .cta-button {
-        padding: 1rem 2rem;
-        font-size: 1.1rem;
-    }
-}
-
-/* Desktop Extra Large (min-width: 1920px) */
-@media screen and (min-width: 1920px) {
-    .image-background img {
-        height: 85vh;
-    }
-    
-    .header-overlay h1 {
-        font-size: 3rem;
-    }
-    
-    .header-overlay p {
-        font-size: 1.6rem;
-    }
-    
-    .cta-button {
-        padding: 1.2rem 2.5rem;
-        font-size: 1.2rem;
-    }
+  .image-background img {
+    height: 35vh;
+    min-height: 200px;
+  }
+  
+  .header-overlay h1 {
+    font-size: 1.1rem;
+  }
+  
+  .header-overlay p {
+    font-size: 0.8rem;
+  }
+  
+  .step {
+    width: 100px;
+    height: 100px;
+    font-size: 0.8rem;
+    padding: 0.5rem;
+  }
 }
 
 /* Landscape Mobile */
 @media screen and (max-height: 500px) and (orientation: landscape) {
-    .image-background img {
-        height: 100vh;
-        min-height: auto;
-    }
-    
-    .header-overlay {
-        top: 45%;
-    }
-    
-    .header-overlay h1 {
-        font-size: 1.2rem;
-        margin-bottom: 0.3rem;
-    }
-    
-    .header-overlay p {
-        font-size: 0.8rem;
-        margin-bottom: 0.5rem;
-    }
-    
-    .cta-button {
-        padding: 0.4rem 0.8rem;
-        font-size: 0.75rem;
-    }
+  .image-background img {
+    height: 100vh;
+  }
+  
+  .header-overlay {
+    top: 45%;
+  }
+  
+  .header-overlay h1 {
+    font-size: 1.2rem;
+  }
+  
+  .header-overlay p {
+    font-size: 0.8rem;
+  }
 }
-
-/* High DPI Screens */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    .image-background img {
-        filter: brightness(0.5) contrast(1.1);
-    }
-}
-
-
 

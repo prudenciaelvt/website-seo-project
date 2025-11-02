@@ -18,23 +18,6 @@ body {
     min-height: 100vh;
 }
 
-/* Sidebar */
-.sidebar {
-    width: 240px;
-    background-color: #003c74;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    z-index: 1001; /* Lebih tinggi dari topbar */
-    position: fixed;
-    left: 0;
-    top: 0;
-    height: 100vh;
-    overflow-y: auto;
-}
-
 .logo {
     padding: 20px;
     text-align: center;
@@ -86,9 +69,12 @@ nav ul li a {
     transition: all 0.3s ease;
 }
 
-/* Beranda Container */
-.beranda-container {
-    max-width: 100%;
+/* === Container Standard === */
+.beranda-container,
+.invoice-container,
+.kwitansi-container {
+    max-width: calc(100% - 40px);
+    margin: 0 auto;
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
@@ -96,7 +82,9 @@ nav ul li a {
     overflow: hidden;
 }
 
-.beranda-container h2 {
+.beranda-container h2,
+.invoice-container h2,
+.kwitansi-container h2 {
     margin-bottom: 30px;
     font-size: 24px;
     border-bottom: 1px solid #ccc;
@@ -210,6 +198,43 @@ table tbody tr:nth-child(even) {
     background-color: #c67d00;
     transform: scale(1.05);
 }
+
+/* Tombol Hapus */
+.btn.btn-danger.btn-sm {
+  background-color: #e74c3c; /* Merah utama */
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+/* Efek hover */
+.btn.btn-danger.btn-sm:hover {
+  background-color: #c0392b;
+  transform: scale(1.05);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Efek klik */
+.btn.btn-danger.btn-sm:active {
+  transform: scale(0.95);
+  background-color: #a93226;
+}
+
+/* Tombol nonaktif */
+.btn.btn-danger.btn-sm:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.aksi-column .btn.btn-danger.btn-sm {
+  margin-left: 8px;
+}
+
 
 /* Tombol di bawah tabel */
 .button-group {

@@ -34,16 +34,28 @@
                     <td>{{ $c->kontak }}</td>
                     <td>{{ $c->paket }}</td>
                     <td>{{ $c->produk_jasa }}</td>
-                    {{-- Format tanggal masuk, kalau kosong tampil tanda '-' --}}
+                    {{-- Format tanggal masuk --}}
                     <td>{{ $c->tanggal_masuk ? \Carbon\Carbon::parse($c->tanggal_masuk)->format('d-m-Y H:i') : '-' }}</td>
-                    <td>
-                    <a href="#" class="lihat-detail" data-id="{{ $c->id }}" data-type="{{ $c->type }}">Lihat Detail</a>
-                    </td>                </tr>
+                    <td class="aksi-column">
+                        {{-- Tombol Lihat Detail --}}
+                        <a href="#" class="lihat-detail" data-id="{{ $c->id }}" data-type="{{ $c->type }}">Lihat Detail</a>
+
+                        {{-- Tombol Hapus --}}
+                        <form action="{{ route('customers.destroy', ['type' => $c->type, 'id' => $c->id]) }}" 
+                            method="POST" 
+                            onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                        </form>
+
+                    </td>            
+                </tr>
                 @endforeach
             </tbody>
         </table>
 
-         {{-- Tombol export Excel dan PDF --}}
+        {{-- Tombol export Excel dan PDF --}}
         <div class="button-group">
             <a href="{{ route('customers.excel') }}" class="btn-excel">Generate Excel</a>
             <a href="{{ route('customers.pdf') }}" class="btn-pdf">Generate PDF</a>
@@ -51,7 +63,7 @@
     </div>
 </div>
 
-{{-- Model untuk menampilkan detail customer --}}
+{{-- Modal untuk menampilkan detail customer --}}
 <div class="detail-overlay" id="detailOverlay" style="display:none;">
     <div class="detail-box">
         <div class="detail-header">
@@ -59,8 +71,7 @@
             <button type="button" class="close-btn">×</button>
         </div>
 
-        {{-- Bagian informasi klien --}}
-
+        {{-- Informasi Klien --}}
         <div class="detail-section">
             <h4>Informasi Klien</h4>
             <table class="detail-table">
@@ -73,8 +84,7 @@
             </table>
         </div>
 
-         {{-- Bagian informasi paket --}}
-
+        {{-- Informasi Paket --}}
         <div class="detail-section">
             <h4>Informasi Paket</h4>
             <table class="detail-table">
@@ -88,41 +98,38 @@
     </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+  // --- Tombol Lihat Detail ---
   document.querySelectorAll('.lihat-detail').forEach(function(el) {
     el.addEventListener('click', function(e) {
       e.preventDefault();
 
-       // Ambil data id dan type dari atribut data
       const id = this.dataset.id;
-      const type = this.dataset.type; // 'seo' atau 'leads'
+      const type = this.dataset.type;
       if (!type || !id) return alert('Data id/type tidak lengkap');
 
-      // Ambil data detail dari server via fetch API
       fetch(`/admin/customer/${type}/${id}`)
         .then(response => {
           if (!response.ok) throw new Error('Gagal mengambil data');
           return response.json();
         })
         .then(data => {
+          document.getElementById('nama_usaha').textContent = data.nama_usaha || '-';
+          document.getElementById('website_usaha').textContent = data.website_usaha || '-';
+          document.getElementById('nama_pemilik').textContent = data.nama_pemilik || '-';
+          document.getElementById('nomor_telepon').textContent = data.nomor_telepon || '-';
+          document.getElementById('email').textContent = data.email || '-';
+          document.getElementById('alamat_usaha').textContent = data.alamat_usaha || '-';
 
-        // Isi detail informasi klien, jika tidak ada data tampil '-'
-        document.getElementById('nama_usaha').textContent = data.nama_usaha || '-';
-        document.getElementById('website_usaha').textContent = data.website_usaha || '-';
-        document.getElementById('nama_pemilik').textContent = data.nama_pemilik || '-';
-        document.getElementById('nomor_telepon').textContent = data.nomor_telepon || '-';
-        document.getElementById('email').textContent = data.email || '-';
-        document.getElementById('alamat_usaha').textContent = data.alamat_usaha || '-';
+          document.getElementById('produk').textContent = data.produk || '-';
+          document.getElementById('komisi').textContent = data.komisi || '-';
+          document.getElementById('paket').textContent = type.toUpperCase();
+          document.getElementById('jangka_waktu').textContent = data.jangka_waktu || '-';
+          document.getElementById('target_market').textContent = data.target_market || '-';
 
-        // Isi informasi paket, perhatikan ada field khusus tiap tipe paket          document.getElementById('produk').textContent = data.produk || '-';
-        document.getElementById('komisi').textContent = data.komisi || '-';
-        document.getElementById('paket').textContent = type.toUpperCase();
-        document.getElementById('jangka_waktu').textContent = data.jangka_waktu || '-';
-        document.getElementById('target_market').textContent = data.target_market || '-';
-
-        // tampilkan modal
-        document.getElementById('detailOverlay').style.display = 'flex';
+          document.getElementById('detailOverlay').style.display = 'flex';
         })
         .catch(err => {
           console.error(err);
@@ -131,10 +138,32 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // close button
+  // --- Tombol Tutup Modal Detail ---
   document.querySelectorAll('.close-btn').forEach(btn => {
     btn.addEventListener('click', function() {
       document.getElementById('detailOverlay').style.display = 'none';
+    });
+  });
+
+  // --- SweetAlert Konfirmasi Hapus ---
+  document.querySelectorAll('.form-hapus').forEach(form => {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      Swal.fire({
+        title: 'Apakah Anda yakin?',
+        text: "Data yang dihapus tidak dapat dikembalikan.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Ya, hapus!',
+        cancelButtonText: 'Batal'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          form.submit(); // lanjut hapus jika dikonfirmasi
+        }
+      });
     });
   });
 });
